@@ -314,12 +314,12 @@ return [
         ['header' => 'Usuarios'],
         [
             'text'        => 'Admin',
-            'url'         => 'admin/pages',
+            'route'         => 'lista.admin',
             'icon'        => 'fas fa-chalkboard-teacher',
         ],
         [
             'text'        => 'Alumnos',
-            'url'         => 'admin/pages',
+            'route'         => 'lista.alumno',
             'icon'        => 'fas fa-user-graduate',
         ],
          ['header' => 'Carreras'],

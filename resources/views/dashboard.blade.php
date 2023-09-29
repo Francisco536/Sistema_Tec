@@ -1,13 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', 'Sistema Tec')
-
 @section('content_header')
-{{ __('Dashboard') }}
+    <strong>Dashboard</strong>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">Bienvenido</h1>
+        </div>
+        <div class="card-body">
+            Sistema Tecnologico
+        </div>
+    </div>
 @stop
 
 @section('css')
