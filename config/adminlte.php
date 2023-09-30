@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Sistema</b>Tec',
-    'logo_img' => 'vendor/adminlte/dist/img/TecNM.png',
+    'logo_img' => 'vendor/adminlte/dist/img/Tec.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -325,18 +325,18 @@ return [
          ['header' => 'Carreras'],
         [
             'text' => 'Agronomia',
-            'url'  => 'admin/settings',
+            'url'  => '',
             'icon' => 'fas fa-seedling',
         ],
         [
             'text' => 'Ingeniaría en Gestión Empresarial',
-            'url'  => 'admin/settings',
+            'url'  => '',
             'icon' => 'fas fa-building',
         ],
         [
-            'text'    => 'ingeniería en Sistemas Computacionales',
-            'icon'    => 'fas fa-laptop-code',
-            'url' => '',
+            'text' => 'ingeniería en Sistemas Computacionales',
+            'icon' => 'fas fa-laptop-code',
+            'url'  => '',
         ],
 
     ],

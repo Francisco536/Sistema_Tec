@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1>Crear Usuario Egresado</h1>
+    <h1>Agregar Alumno</h1>
     @if (session('message'))
     <div class="alert alert-danger" role="message">
         {{session('message')}}
@@ -14,10 +14,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registrar') }}</div>
+                <div class="card-header">{{ __('Ingresa los datos del alumno') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('store.egresado') }}">
+                    <form method="POST" action="{{ route('store.alumno') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -94,21 +94,19 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="carrera_egreso" class="col-md-4 col-form-label text-md-end">{{ __('Carrera de Egreso') }}</label>
+                            <label for="carrera" class="col-md-4 col-form-label text-md-end">{{ __('Carrera') }}</label>
 
                             <div class="col-md-6">
                                 {{-- <input id="carrera_egreso" type="text" class="form-control @error('carrera_egreso') is-invalid @enderror" name="carrera_egreso" value="{{ old('carrera_egreso') }}" required autocomplete="sexo" autofocus> --}}
-                                <select id="carrera_egreso" name="carrera_egreso" class="form-control select2" style="width: 100%;" required>
-                                    <option selected="selected" value="Lic. en Administración">Lic. en Administración</option>
-                                    <option value="Ing. Civil">Ing. Civil</option>
+                                <select id="carrera" name="carrera" class="form-control select2" style="width: 100%;" required>
+                                    <option selected="selected" value="Agronomia">Agronomia</option>
                                     <option value="Ing. en Gestión Empresarial" >Ing. en Gestión Empresarial</option>
-                                    <option value="Ing. Industrial">Ing. Industrial</option>
                                     <option value="Ing. en Sistemas Computacionales">Ing. en Sistemas Computacionales</option>
-                                    <option value="Mecatrónica">Mecatrónica</option>
+
 
                                   </select>
 
-                                @error('carrera_egreso')
+                                @error('carrera')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -117,12 +115,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="especialidad" class="col-md-4 col-form-label text-md-end">{{ __('Especialidad') }}</label>
+                            <label for="no_control" class="col-md-4 col-form-label text-md-end">{{ __('Numero de Control') }}</label>
 
                             <div class="col-md-6">
-                                <input id="especialidad" type="text" class="form-control @error('especialidad') is-invalid @enderror" name="especialidad" value="{{ old('especialidad') }}" required autocomplete="especialidad" autofocus>
+                                <input id="no_control" type="text" class="form-control @error('no_control') is-invalid @enderror" name="no_control" value="{{ old('no_control') }}" required autocomplete="no_control" autofocus>
 
-                                @error('especialidad')
+                                @error('no_control')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -131,12 +129,26 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="anio_egreso" class="col-md-4 col-form-label text-md-end">{{ __('Año de Egreso') }}</label>
+                            <label for="anio" class="col-md-4 col-form-label text-md-end">{{ __('Año') }}</label>
 
                             <div class="col-md-6">
-                                <input id="anio_egreso" type="text" class="form-control @error('anio_egreso') is-invalid @enderror" name="anio_egreso" value="{{ old('anio_egreso') }}" required autocomplete="anio_egreso" autofocus>
+                                <input id="anio" type="text" class="form-control @error('anio') is-invalid @enderror" name="anio" value="{{ old('anio') }}" required autocomplete="anio" autofocus>
 
-                                @error('anio_egreso')
+                                @error('anio')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="telefono" class="col-md-4 col-form-label text-md-end">{{ __('Numero de telefono') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
+
+                                @error('telefono')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

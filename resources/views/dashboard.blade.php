@@ -10,7 +10,7 @@
             <h1 class="card-title">Bienvenido</h1>
         </div>
         <div class="card-body">
-            Sistema Tecnologico
+            Sistema para cargar y validar documentos para titulación
         </div>
     </div>
 @stop

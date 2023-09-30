@@ -26,13 +26,13 @@ class AlumnoController extends Controller
         //
 
         $name        = $request->name;
-        $anio_egreso = $request->anio_egreso;
+        $anio = $request->anio;
         $collection = User::whereHas('roles', function ($query) {
-            $query->where('name', 'Egresado');
+            $query->where('name', 'Alumno');
         })->paginate(10);
 
-        if($anio_egreso && $name){
-            $collection = User::where('anio_egreso', 'like', '%'.$anio_egreso.'%')->
+        if($anio && $name){
+            $collection = User::where('anio', 'like', '%'.$anio.'%')->
             where('name', 'like', '%'.$name.'%')
             ->with('roles')->select('*')->paginate(10);
 
@@ -44,9 +44,9 @@ class AlumnoController extends Controller
         // }
 
         $params['name'] = $name;
-        $params['anio_egreso'] = $anio_egreso;
+        $params['anio'] = $anio;
         $params['collection'] = $collection;
-        return view('egresado.index', $params);
+        return view('alumno.index', $params);
     }
 
     /**
@@ -57,7 +57,7 @@ class AlumnoController extends Controller
     public function create()
     {
         //
-        return view('egresado.create');
+        return view('alumno.create');
     }
 
     /**
@@ -79,9 +79,9 @@ class AlumnoController extends Controller
                 'ap_mater' => $request['ap_mater'],
                 'fecha_nacimiento' => $request['fecha_nacimiento'],
                 'sexo' => $request['sexo'],
-                'carrera_egreso' => $request['carrera_egreso'],
+                'carrera' => $request['carrera'],
                 'especialidad' => $request['especialidad'],
-                'anio_egreso' => $request['anio_egreso'],
+                'anio' => $request['anio'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
             ])->assignRole('alumno');
