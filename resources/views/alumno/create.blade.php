@@ -97,7 +97,7 @@
                             <label for="carrera" class="col-md-4 col-form-label text-md-end">{{ __('Carrera') }}</label>
 
                             <div class="col-md-6">
-                                {{-- <input id="carrera_egreso" type="text" class="form-control @error('carrera_egreso') is-invalid @enderror" name="carrera_egreso" value="{{ old('carrera_egreso') }}" required autocomplete="sexo" autofocus> --}}
+
                                 <select id="carrera" name="carrera" class="form-control select2" style="width: 100%;" required>
                                     <option selected="selected" value="Agronomia">Agronomia</option>
                                     <option value="Ing. en Gestión Empresarial" >Ing. en Gestión Empresarial</option>

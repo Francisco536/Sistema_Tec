@@ -80,8 +80,9 @@ class AlumnoController extends Controller
                 'fecha_nacimiento' => $request['fecha_nacimiento'],
                 'sexo' => $request['sexo'],
                 'carrera' => $request['carrera'],
-                'especialidad' => $request['especialidad'],
+                'no_control' => $request['no_control'],
                 'anio' => $request['anio'],
+                'telefono' => $request['telefono'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
             ])->assignRole('alumno');
@@ -89,13 +90,13 @@ class AlumnoController extends Controller
             $name = $request['name'] . ' '.$request['ap_pater'];
             $pass = $request['password'];
             $message = (object)[
-                "title"             => 'Contraseña | Portal Sequimiento de Egresados',
+                "title"             => 'Contraseña | Portal Sistema Tec',
                 "content"           => (object)[
                     "user"          => $name,
                     "notification"  => 'Contraseña de acceso: ' . $pass,
 
                 ],
-                'subject'           => 'Contraseña | Portal Sequimiento de Egresados'
+                'subject'           => 'Contraseña | Sistema Tec'
             ];
 
         //     Mail::to($request['email'])->send(new EnviarPassword($message->title,
@@ -103,10 +104,10 @@ class AlumnoController extends Controller
         //     $message->subject,)
         // );
 
-                return redirect()->route('lista.egresado')->with('success','Usuario agregado correctamente');
+                return redirect()->route('lista.alumno')->with('success','Usuario agregado correctamente');
 
          }else{
-            return redirect()->route('add.egresado')->with('message','El correo ya existe, ingrese uno nuevo');
+            return redirect()->route('add.alumno')->with('message','El correo ya existe, ingrese uno nuevo');
          }
 
         }
