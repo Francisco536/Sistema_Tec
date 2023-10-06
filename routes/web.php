@@ -4,6 +4,7 @@ use App\Models\Alumno;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\DocTitulacionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,13 +47,13 @@ Route::middleware([
         Route::get('destroy/{alumno}', [AlumnoController::class, 'destroy'])->name("destroy.alumno")->middleware('auth');
     });
 
-    Route::group(['prefix' => 'encuesta'], function(){
-        Route::get('/index', [EncuestaController::class, 'index'])->name('lista.encuesta')->middleware('auth');
-        Route::get('/realizadas', [EncuestaController::class, 'realizadas'])->name('realizadas.encuesta')->middleware('auth');
-        Route::get('/responder', [EncuestaController::class, 'create'])->name('add.encuesta')->middleware('auth');
-        Route::post('/store', [EncuestaController::class, 'store'])->name('store.encuesta')->middleware('auth');
-        Route::get('/{id}/detalle', [EncuestaController::class, 'show'])->name('ver.encuesta')->middleware('auth');
-        Route::get('/finalizada', [EncuestaController::class, 'end'])->name('end.encuesta')->middleware('auth');
+    Route::group(['prefix' => 'documentos'], function(){
+        Route::get('/index', [DocTitulacionController::class, 'index'])->name('lista.documentos')->middleware('auth');
+        Route::get('/realizadas', [DocTitulacionController::class, 'realizadas'])->name('realizadas.documentos')->middleware('auth');
+        Route::get('/cargarDocumentos', [DocTitulacionController::class, 'create'])->name('add.documentos')->middleware('auth');
+        Route::post('/store', [DocTitulacionController::class, 'store'])->name('store.documentos')->middleware('auth');
+        Route::get('/{id}/detalle', [DocTitulacionController::class, 'show'])->name('ver.documentos')->middleware('auth');
+        Route::get('/finalizada', [DocTitulacionController::class, 'end'])->name('end.documentos')->middleware('auth');
     });
 
 });

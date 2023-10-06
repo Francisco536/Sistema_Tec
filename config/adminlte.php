@@ -313,30 +313,36 @@ return [
         // ],
         ['header' => 'Usuarios'],
         [
-            'text'        => 'Admin',
+            'text'        => ' Admin',
             'route'         => 'lista.admin',
             'icon'        => 'fas fa-chalkboard-teacher',
         ],
         [
-            'text'        => 'Alumnos',
+            'text'        => ' Alumnos',
             'route'         => 'lista.alumno',
             'icon'        => 'fas fa-user-graduate',
         ],
          ['header' => 'Carreras'],
         [
-            'text' => 'Agronomia',
+            'text' => ' Agronomia',
             'url'  => '',
             'icon' => 'fas fa-seedling',
         ],
         [
-            'text' => 'Ingeniaría en Gestión Empresarial',
+            'text' => ' Ingeniaría en Gestión Empresarial',
             'url'  => '',
             'icon' => 'fas fa-building',
         ],
         [
-            'text' => 'ingeniería en Sistemas Computacionales',
+            'text' => ' Ingeniería en Sistemas Computacionales',
             'icon' => 'fas fa-laptop-code',
             'url'  => '',
+        ],
+        ['header' => 'Formularios'],
+        [
+            'text' => ' Documentos para titulación',
+            'route'  => 'lista.documentos',
+            'icon' => 'far fa-file-pdf',
         ],
 
     ],

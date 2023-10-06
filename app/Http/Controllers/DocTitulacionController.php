@@ -12,7 +12,12 @@ class DocTitulacionController extends Controller
      */
     public function index()
     {
-        //
+        $collection = DocTitulacion::get();
+        //$userId = auth()->user()->id;
+        $params['collection'] = $collection;
+
+
+        return view('formularioDoc.index', $params);
     }
 
     /**

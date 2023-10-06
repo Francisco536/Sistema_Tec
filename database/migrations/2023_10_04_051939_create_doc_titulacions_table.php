@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('doc_titulacions', function (Blueprint $table) {
             $table->id();
+            $table->string('acto_recepcional');
+            $table->string('no_inconveniencia');
+            $table->string('lib_proyecto');
+            $table->string('reg_proyecto');
+            $table->string('solicitud');
+            $table->string('const_ingles');
+            $table->string('const_servsoc');
+            $table->string('certificado');
+            $table->string('acept_tesis');
+
+
+            $table->string('id_user');
             $table->timestamps();
         });
     }
