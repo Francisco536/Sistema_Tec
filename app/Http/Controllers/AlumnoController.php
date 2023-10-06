@@ -26,13 +26,13 @@ class AlumnoController extends Controller
         //
 
         $name        = $request->name;
-        $anio = $request->anio;
+        $no_control = $request->no_control;
         $collection = User::whereHas('roles', function ($query) {
             $query->where('name', 'Alumno');
         })->paginate(10);
 
-        if($anio && $name){
-            $collection = User::where('anio', 'like', '%'.$anio.'%')->
+        if($no_control && $name){
+            $collection = User::where('no_control', 'like', '%'.$no_control.'%')->
             where('name', 'like', '%'.$name.'%')
             ->with('roles')->select('*')->paginate(10);
 
@@ -44,7 +44,7 @@ class AlumnoController extends Controller
         // }
 
         $params['name'] = $name;
-        $params['anio'] = $anio;
+        $params['no_control'] = $no_control;
         $params['collection'] = $collection;
         return view('alumno.index', $params);
     }
@@ -128,9 +128,10 @@ class AlumnoController extends Controller
      * @param  \App\Models\alumno  $alumno
      * @return \Illuminate\Http\Response
      */
-    public function show(alumno $alumno)
+    public function show($id)
     {
-        //
+        $alumno = User::findOrFail($id);
+        return view('alumno.show', compact('alumno'));
     }
 
     /**
@@ -142,7 +143,7 @@ class AlumnoController extends Controller
     public function edit($id)
     {
         //
-        $egresado = User::findOrFail($id);
+        $alumno = User::findOrFail($id);
         return view('alumno.update', compact('alumno'));
     }
 
@@ -165,9 +166,10 @@ class AlumnoController extends Controller
                 'ap_mater' => $request['ap_mater'],
                 'fecha_nacimiento' => $request['fecha_nacimiento'],
                 'sexo' => $request['sexo'],
-                'carrera_egreso' => $request['carrera_egreso'],
-                'especialidad' => $request['especialidad'],
-                'anio_egreso' => $request['anio_egreso'],
+                'carrera' => $request['carrera'],
+                'no_control' => $request['no_control'],
+                'anio' => $request['anio'],
+                'telefono' => $request['telefono'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
             ]);
@@ -195,7 +197,7 @@ class AlumnoController extends Controller
             $response = [
                 "code" => 200, "msg" => "Éxito"
             ];
-            return redirect()->route('lista.egresado')->with('success','Usuario Actualizado correctamente');
+            return redirect()->route('lista.alumno')->with('success','Usuario Actualizado correctamente');
         }
         catch(ValidationException $exception){
             $response = [

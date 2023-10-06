@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1>Agregar Alumno</h1>
+    <h1>Agregar archivos para proceso de titulación</h1>
     @if (session('message'))
     <div class="alert alert-danger" role="message">
         {{session('message')}}
@@ -14,10 +14,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Ingresa los datos del alumno') }}</div>
+                <div class="card-header">{{ __('Ingresa tus documentos') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('store.documento') }}">
+                    <form method="POST" action="{{ route('store.documentos') }}">
                         @csrf
 
                         <div class="row mb-3">

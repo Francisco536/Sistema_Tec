@@ -342,6 +342,11 @@ return [
         [
             'text' => ' Documentos para titulación',
             'route'  => 'lista.documentos',
+            'icon' => 'fas fa-archive',
+        ],
+        [
+            'text' => ' Cargar documentos para titulación',
+            'route'  => 'add.documentos',
             'icon' => 'far fa-file-pdf',
         ],
 
