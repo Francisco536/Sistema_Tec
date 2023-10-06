@@ -87,7 +87,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $admin = User::findOrFail($id);
+        return view('admin.show', compact('admin'));
     }
 
     /**

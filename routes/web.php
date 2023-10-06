@@ -31,6 +31,7 @@ Route::middleware([
 
     Route::group(['prefix' => 'admin'], function(){
         Route::get('/index', [AdminController::class, 'index'])->name('lista.admin')->middleware('auth');
+        Route::get('/{id}/show', [AdminController::class, 'show'])->name('ver.admin')->middleware('auth');
         Route::get('/create', [AdminController::class, 'create'])->name('add.admin')->middleware('auth');
         Route::post('/store', [AdminController::class, 'store'])->name('store.admin')->middleware('auth');
         Route::get('/{id}/edit', [AdminController::class, 'edit'])->name('edit.admin')->middleware('auth');
