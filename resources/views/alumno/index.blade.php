@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h4>Lista de Egresados</h4>
+    <h4>Listado de alumnos</h4>
 @stop
 
 @section('content')

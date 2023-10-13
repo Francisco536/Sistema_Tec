@@ -87,21 +87,23 @@ class AlumnoController extends Controller
             ])->assignRole('alumno');
 
             $name = $request['name'] . ' '.$request['ap_pater'];
+            $noCon = $request['no_control'];
             $pass = $request['password'];
             $message = (object)[
-                "title"             => 'Contraseña | Portal Sistema Tec',
+                "title"             => 'Acceso y contraseña | Sistema Tec',
                 "content"           => (object)[
                     "user"          => $name,
+                    "NoControl"     => 'Acceso: ' . $noCon,
                     "notification"  => 'Contraseña de acceso: ' . $pass,
 
                 ],
                 'subject'           => 'Contraseña | Sistema Tec'
             ];
 
-        //     Mail::to($request['email'])->send(new EnviarPassword($message->title,
-        //     $message->content,
-        //     $message->subject,)
-        // );
+            Mail::to($request['email'])->send(new EnviarPassword($message->title,
+            $message->content,
+            $message->subject,)
+        );
 
                 return redirect()->route('lista.alumno')->with('success','Usuario agregado correctamente');
 
@@ -177,20 +179,22 @@ class AlumnoController extends Controller
 
             $name = $request['name'] . ' '.$request['ap_pater'];
             $pass = $request['password'];
+            $noCon = $request['no_control'];
             $message = (object)[
-                "title"             => 'Contraseña | Portal Sequimiento de Egresados',
+                "title"             => 'Nueva contraseña | Sistema Tec',
                 "content"           => (object)[
                     "user"          => $name,
+                    "NoControl"     => 'Acceso: ' . $noCon,
                     "notification"  => 'Nueva contraseña de acceso: ' . $pass,
 
                 ],
-                'subject'           => 'Contraseña | Portal Sequimiento de Egresados'
+                'subject'           => 'Contraseña | Sistema Tec'
             ];
 
-        //     Mail::to($request['email'])->send(new EnviarPassword($message->title,
-        //     $message->content,
-        //     $message->subject,)
-        // );
+            Mail::to($request['email'])->send(new EnviarPassword($message->title,
+            $message->content,
+            $message->subject,)
+        );
 
             $response = [
                 "code" => 200, "msg" => "Éxito"
