@@ -63,19 +63,6 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="fecha_nacimiento" class="col-md-4 col-form-label text-md-end">{{ __('Fecha de nacimiento') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="fecha_nacimiento" type="date" class="form-control @error('fecha_nacimiento') is-invalid @enderror" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}" required placeholder="dd/mm/yyyy" autofocus>
-                                @error('fecha_nacimiento')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
                             <label for="sexo" class="col-md-4 col-form-label text-md-end">{{ __('Sexo') }}</label>
 
                             <div class="col-md-6">
@@ -129,7 +116,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="anio" class="col-md-4 col-form-label text-md-end">{{ __('Año') }}</label>
+                            <label for="anio" class="col-md-4 col-form-label text-md-end">{{ __('Año de ingreso') }}</label>
 
                             <div class="col-md-6">
                                 <input id="anio" type="text" class="form-control @error('anio') is-invalid @enderror" name="anio" value="{{ old('anio') }}" required autocomplete="anio" autofocus>

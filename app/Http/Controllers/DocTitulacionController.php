@@ -21,6 +21,45 @@ class DocTitulacionController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     */
+    public function indexCom()
+    {
+        $collection = DocTitulacion::get();
+        //$userId = auth()->user()->id;
+        $params['collection'] = $collection;
+
+
+        return view('formularioDoc.completo', $params);
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function indexInc()
+    {
+        $collection = DocTitulacion::get();
+        //$userId = auth()->user()->id;
+        $params['collection'] = $collection;
+
+
+        return view('formularioDoc.proceso', $params);
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function indexVac()
+    {
+        $collection = DocTitulacion::get();
+        //$userId = auth()->user()->id;
+        $params['collection'] = $collection;
+
+
+        return view('formularioDoc.incompleto', $params);
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()

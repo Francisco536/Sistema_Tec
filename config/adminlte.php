@@ -341,9 +341,25 @@ return [
         ['header' => 'Formularios'],
         [
             'text' => ' Documentos para titulación',
-            'route'  => 'lista.documentos',
             'icon' => 'fas fa-archive',
+            'submenu' => [
+                            [
+                                'text' => 'Documentación completa',
+                                'icon' => 'fas fa-clipboard-check',
+                                'route'  => 'lista.documentosCom',
+                            ],
+                            [
+                                'text' => 'Documentación en proceso',
+                                'icon' => 'fas fa-history',
+                                'route'  => 'lista.documentosInc',
+                            ],
+                            [
+                                'text' => 'Sin documentación',
+                                'icon' => 'fas fa-minus-circle',
+                                'route'  => 'lista.documentosVacio',
+                            ],
         ],
+    ],
         [
             'text' => ' Cargar documentos para titulación',
             'route'  => 'add.documentos',

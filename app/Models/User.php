@@ -29,7 +29,6 @@ class User extends Authenticatable
         'name',
         'ap_pater',
         'ap_mater',
-        'fecha_nacimiento',
         'sexo',
         'carrera',
         'no_control',

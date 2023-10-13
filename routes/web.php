@@ -51,6 +51,9 @@ Route::middleware([
 
     Route::group(['prefix' => 'documentos'], function(){
         Route::get('/index', [DocTitulacionController::class, 'index'])->name('lista.documentos')->middleware('auth');
+        Route::get('/DocumentosCompletos', [DocTitulacionController::class, 'indexCom'])->name('lista.documentosCom')->middleware('auth');
+        Route::get('/DocumentacionProceso', [DocTitulacionController::class, 'indexInc'])->name('lista.documentosInc')->middleware('auth');
+        Route::get('/SinDocumentos', [DocTitulacionController::class, 'indexVac'])->name('lista.documentosVacio')->middleware('auth');
         Route::get('/realizadas', [DocTitulacionController::class, 'realizadas'])->name('realizadas.documentos')->middleware('auth');
         Route::get('/cargarDocumentos', [DocTitulacionController::class, 'create'])->name('add.documentos')->middleware('auth');
         Route::post('/store', [DocTitulacionController::class, 'store'])->name('store.documentos')->middleware('auth');
