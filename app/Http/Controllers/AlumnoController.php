@@ -25,15 +25,14 @@ class AlumnoController extends Controller
     {
         //
 
-        $name        = $request->name;
+
         $no_control = $request->no_control;
         $collection = User::whereHas('roles', function ($query) {
             $query->where('name', 'Alumno');
         })->paginate(10);
 
-        if($no_control && $name){
-            $collection = User::where('no_control', 'like', '%'.$no_control.'%')->
-            where('name', 'like', '%'.$name.'%')
+        if($no_control){
+            $collection = User::where('no_control', 'like', '%'.$no_control.'%')
             ->with('roles')->select('*')->paginate(10);
 
         }
@@ -43,7 +42,7 @@ class AlumnoController extends Controller
 
         // }
 
-        $params['name'] = $name;
+
         $params['no_control'] = $no_control;
         $params['collection'] = $collection;
         return view('alumno.index', $params);

@@ -24,8 +24,8 @@
             </div>
             <div class="d-flex justify-content-start">
                 <form class="d-flex" role="search" action="{{route('lista.alumno')}}" method="GET">
-                    <input name="name" class="form-control me-2" type="search" placeholder="Nombre" aria-label="Search" value="{{$name}}" required>
-                    <input name="anio" class="form-control me-2" type="search" placeholder="No. Control" aria-label="Search" value="{{$no_control}}" required>
+
+                    <input name="no_control" class="form-control me-2" type="search" placeholder="No. Control" aria-label="Search" value="{{$no_control}}" required>
                     <button class="btn btn-success" type="submit">Buscar</button>
                     <a class="btn btn-warning" id="limpiar" href="{{route('lista.alumno')}}">Limpiar</a>
                   </form>
