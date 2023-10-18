@@ -41,6 +41,9 @@ Route::middleware([
     });
     Route::group(['prefix' => 'alumno'], function(){
         Route::get('/index', [AlumnoController::class, 'index'])->name('lista.alumno')->middleware('auth');
+        Route::get('/index/agronomia', [AlumnoController::class, 'agronomia'])->name('lista.alumnoAgro')->middleware('auth');
+        Route::get('/index/gestion', [AlumnoController::class, 'gestion'])->name('lista.alumnoGes')->middleware('auth');
+        Route::get('/index/sistemas', [AlumnoController::class, 'sistemas'])->name('lista.alumnoSis')->middleware('auth');
         Route::get('/{id}/show', [AlumnoController::class, 'show'])->name('show.alumno')->middleware('auth');
         Route::get('/create', [AlumnoController::class, 'create'])->name('add.alumno')->middleware('auth');
         Route::post('/store', [AlumnoController::class, 'store'])->name('store.alumno')->middleware('auth');

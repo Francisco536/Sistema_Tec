@@ -48,6 +48,81 @@ class AlumnoController extends Controller
         return view('alumno.index', $params);
     }
 
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function agronomia(Request $request)
+    {
+        $no_control = $request->no_control;
+        $collection = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Alumno');
+        })->where('carrera', 'agronomia')->paginate(10);
+
+        if($no_control){
+            $collection = User::where('no_control', 'like', '%'.$no_control.'%')
+            ->with('roles')->select('*')->paginate(10);
+
+        }
+
+
+
+        $params['no_control'] = $no_control;
+        $params['collection'] = $collection;
+        return view('alumno.agronomia', $params);
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function gestion(Request $request)
+    {
+        $no_control = $request->no_control;
+        $collection = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Alumno');
+        })->where('carrera', 'Ing. en Gestión Empresarial')->paginate(10);
+
+        if($no_control){
+            $collection = User::where('no_control', 'like', '%'.$no_control.'%')
+            ->with('roles')->select('*')->paginate(10);
+
+        }
+
+
+
+        $params['no_control'] = $no_control;
+        $params['collection'] = $collection;
+        return view('alumno.gestion', $params);
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sistemas(Request $request)
+    {
+        $no_control = $request->no_control;
+        $collection = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Alumno');
+        })->where('carrera', 'Ing. en Sistemas Computacionales')->paginate(10);
+
+        if($no_control){
+            $collection = User::where('no_control', 'like', '%'.$no_control.'%')
+            ->with('roles')->select('*')->paginate(10);
+
+        }
+
+
+
+        $params['no_control'] = $no_control;
+        $params['collection'] = $collection;
+        return view('alumno.sistemas', $params);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

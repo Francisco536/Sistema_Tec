@@ -325,18 +325,18 @@ return [
          ['header' => 'Carreras'],
         [
             'text' => ' Agronomia',
-            'url'  => '',
+            'route'  => 'lista.alumnoAgro',
             'icon' => 'fas fa-seedling',
         ],
         [
             'text' => ' Ingeniaría en Gestión Empresarial',
-            'url'  => '',
+            'route'  => 'lista.alumnoGes',
             'icon' => 'fas fa-building',
         ],
         [
             'text' => ' Ingeniería en Sistemas Computacionales',
             'icon' => 'fas fa-laptop-code',
-            'url'  => '',
+            'route'  => 'lista.alumnoSis',
         ],
         ['header' => 'Formularios'],
         [
