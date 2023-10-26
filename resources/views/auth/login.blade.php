@@ -30,7 +30,7 @@
 <div class="tab-content">
     <div id="admin" class="container tab-pane active">
         <h3>Iniciar Sesion</h3>
-        <form  method="POST" action="{{ route('login') }}" >
+        <form  method="POST" id="admin" action="{{ route('login') }}" >
             @csrf
 
             <div>
@@ -57,7 +57,7 @@
 
     <div id="alumno" class="container tab-pane fade">
         <h3>Iniciar Sesion</h3>
-        {{-- <form  id="formulariologina" name="formulariologina" method="POST"  action="{{ route('login') }}">
+        <form  id="alumno" name="formulariologina" method="POST"  action="{{ route('login') }}">
             @csrf
             <div>
                 <x-label for="no_control" value="{{ __('No. Control') }}" />
@@ -74,7 +74,7 @@
                     {{ __('Iniciar Sesión') }}
                 </x-button>
             </div>
-        </form> --}}
+        </form>
 
     </div>
 </div>
@@ -85,7 +85,11 @@
 </x-guest-layout>
 @section('js')
 <script>
-
-
+var adminLog = document.getElementById('admin');
+    adminLog.addEventListener("submit", (e) => {
+    });
+    var alumLog = document.getElementById('alumno');
+    alumLog.addEventListener("submit", (e) => {
+    });
 </script>
 @stop
