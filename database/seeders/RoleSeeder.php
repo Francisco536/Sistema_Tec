@@ -38,7 +38,7 @@ class RoleSeeder extends Seeder
        Permission::create(['name' => 'lista.documentosCom'])->assignRole($admin);
        Permission::create(['name' => 'lista.documentosInc'])->assignRole($admin);
        Permission::create(['name' => 'lista.documentosVacio'])->assignRole($admin);
-       Permission::create(['name' => 'add.documento'])->assignRole($alumno);
+       Permission::create(['name' => 'add.documentos'])->assignRole($alumno);
 
     }
 }
