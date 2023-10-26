@@ -311,32 +311,42 @@ return [
         //     'url'  => 'admin/blog',
         //     'can'  => 'manage-blog',
         // ],
-        ['header' => 'Usuarios'],
+        ['header' => 'Usuarios',
+        'can'         => 'lista.admin',
+    ],
         [
             'text'        => ' Admin',
-            'route'         => 'lista.admin',
+            'route'       => 'lista.admin',
             'icon'        => 'fas fa-chalkboard-teacher',
+            'can'         => 'lista.admin',
         ],
         [
             'text'        => ' Alumnos',
-            'route'         => 'lista.alumno',
+            'route'       => 'lista.alumno',
             'icon'        => 'fas fa-user-graduate',
+            'can'         => 'lista.alumno',
         ],
-         ['header' => 'Carreras'],
+         ['header' => 'Carreras',
+         'can'         => 'lista.alumno',
+
+        ],
         [
-            'text' => ' Agronomia',
-            'route'  => 'lista.alumnoAgro',
-            'icon' => 'fas fa-seedling',
+            'text'  => ' Agronomia',
+            'route' => 'lista.alumnoAgro',
+            'icon'  => 'fas fa-seedling',
+            'can'   => 'lista.alumnoAgro',
         ],
         [
             'text' => ' Ingeniaría en Gestión Empresarial',
             'route'  => 'lista.alumnoGes',
             'icon' => 'fas fa-building',
+            'can'  => 'lista.alumnoGes',
         ],
         [
             'text' => ' Ingeniería en Sistemas Computacionales',
             'icon' => 'fas fa-laptop-code',
             'route'  => 'lista.alumnoSis',
+            'can' => 'lista.alumnoSis'
         ],
         ['header' => 'Formularios'],
         [
@@ -359,11 +369,13 @@ return [
                                 'route'  => 'lista.documentosVacio',
                             ],
         ],
+        'can' => 'lista.documentosVacio',
     ],
         [
             'text' => ' Cargar documentos para titulación',
             'route'  => 'add.documentos',
             'icon' => 'far fa-file-pdf',
+            'can'  => 'add.documentos',
         ],
 
     ],
