@@ -107,7 +107,25 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script>
+    //primeras letras mayusculas
+    function capitalize(str){
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+        }
+        const input = document.getElementById('name');
+        input.addEventListener('keypress', e => {
+        setTimeout(() => {input.value = input.value.split(' ').map(x => capitalize(x)).join(' ')}, 1)
+        })
+
+        const input2 = document.getElementById('ap_pater');
+        input2.addEventListener('keypress', e => {
+        setTimeout(() => {input2.value = capitalize(input2.value)}, 1)
+        })
+        const input3 = document.getElementById('ap_mater');
+        input3.addEventListener('keypress', e => {
+        setTimeout(() => {input3.value = capitalize(input3.value)}, 1)
+        })
+    </script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
 @stop
 

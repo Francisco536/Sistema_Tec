@@ -17,7 +17,7 @@
                 <div class="card-header">{{ __('Ingresa los datos del alumno') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('store.alumno') }}">
+                    <form method="POST" name="addAlumno" id="addAlumno" action="{{ route('store.alumno') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -52,7 +52,7 @@
                             <label for="ap_mater" class="col-md-4 col-form-label text-md-end">{{ __('Apellido Materno') }}</label>
 
                             <div class="col-md-6">
-                                <input id="ap_mater" type="text" class="form-control @error('ap_mater') is-invalid @enderror" name="ap_mater" value="{{ old('ap_mater') }}" required autocomplete="ap_mater" autofocus>
+                                <input id="ap_mater" onkeyup="capitalizarPrimeraLetra()" type="text" class="form-control @error('ap_mater') is-invalid @enderror" name="ap_mater" value="{{ old('ap_mater') }}" required autocomplete="ap_mater" autofocus>
 
                                 @error('ap_mater')
                                     <span class="invalid-feedback" role="alert">
@@ -106,7 +106,7 @@
 
                             <div class="col-md-6">
                                 <input id="no_control" type="text" class="form-control @error('no_control') is-invalid @enderror" name="no_control" value="{{ old('no_control') }}" required autocomplete="no_control" autofocus>
-
+                                <div id="alert" class="alert alert-danger" style="display:none" role="alert">Ingresa solo números</div>
                                 @error('no_control')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -119,13 +119,8 @@
                             <label for="anio" class="col-md-4 col-form-label text-md-end">{{ __('Año de ingreso') }}</label>
 
                             <div class="col-md-6">
-                                <input id="anio" type="text" class="form-control @error('anio') is-invalid @enderror" name="anio" value="{{ old('anio') }}" required autocomplete="anio" autofocus>
-
-                                @error('anio')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="anio" type="text" class="form-control @error('anio') is-invalid @enderror" name="anio" maxlength="4" value="{{ old('anio') }}" required autocomplete="anio" autofocus>
+                                <div id="alert2" class="alert alert-danger" style="display:none" role="alert">Ingresa solo números</div>
                             </div>
                         </div>
 
@@ -133,13 +128,8 @@
                             <label for="telefono" class="col-md-4 col-form-label text-md-end">{{ __('Numero de telefono') }}</label>
 
                             <div class="col-md-6">
-                                <input id="telefono" type="text" class="form-control  @error('telefono') is-invalid @enderror" pattern="[0-9]{10}" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
-
-                                @error('telefono')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="telefono" type="text" class="form-control  @error('telefono') is-invalid @enderror" maxlength="10" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
+                                <div id="alert3" class="alert alert-danger" style="display:none" role="alert">Ingresa solo números</div>
                             </div>
                         </div>
 
@@ -177,6 +167,7 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <div id="errpas" class="alert alert-danger" style="display:none" role="alert">La contraseña no coincide!!</div>
                             </div>
                         </div>
 
@@ -205,5 +196,83 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+
+    <script >
+    const alerta = document.getElementById("alert")
+    addAlumno = document.querySelector('#addAlumno');
+    addAlumno.no_control.addEventListener('keypress', function (e){
+	    if (!soloNumeros(event)){
+  	            e.preventDefault();
+                  let x = document.getElementById("alert");
+                    x.style.display = "block";
+                    setTimeout(function () {
+                    $("#alert").fadeOut(1000);
+                    }, 1000);
+         }
+    })
+
+    addAlumno.telefono.addEventListener('keypress', function (e){
+	    if (!soloNumeros(event)){
+  	            e.preventDefault();
+                  let x = document.getElementById("alert3");
+                    x.style.display = "block";
+                    setTimeout(function () {
+                    $("#alert3").fadeOut(1000);
+                    }, 1000);
+         }
+    })
+
+    addAlumno.anio.addEventListener('keypress', function (e){
+	    if (!soloNumeros(event)){
+  	            e.preventDefault();
+                  let x = document.getElementById("alert2");
+                    x.style.display = "block";
+                    setTimeout(function () {
+                    $("#alert2").fadeOut(1000);
+                    }, 1000);
+         }
+    })
+
+//Solo permite introducir numeros.
+    function soloNumeros(e){
+        var key = e.charCode;
+        console.log(key);
+        return key >= 48 && key <= 57;
+    }
+
+//primeras letras mayusculas
+    function capitalize(str){
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+    const input = document.getElementById('name');
+    input.addEventListener('keypress', e => {
+    setTimeout(() => {input.value = input.value.split(' ').map(x => capitalize(x)).join(' ')}, 1)
+    });
+    const input2 = document.getElementById('ap_pater');
+    input2.addEventListener('keypress', e => {
+    setTimeout(() => {input2.value = capitalize(input2.value)}, 1)
+    });
+    const input3 = document.getElementById('ap_mater');
+    input3.addEventListener('keypress', e => {
+    setTimeout(() => {input3.value = capitalize(input3.value)}, 1)
+    });
+    //Validar password
+    var alumLog = document.getElementById('addAlumno');
+    alumLog.addEventListener("submit", (e) => {
+        pass1 = document.getElementById('password');
+        pass2 = document.getElementById('password-confirm');
+
+     if (pass1.value !== pass2.value) {
+         e.preventDefault();
+         let x = document.getElementById("errpas");
+                    x.style.display = "block";
+                    setTimeout(function () {
+                    $("#errpas").fadeOut(1000);
+                    }, 1000);
+        }
+    });
+
+
+
+    </script>
 @stop

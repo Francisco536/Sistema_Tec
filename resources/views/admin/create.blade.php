@@ -17,7 +17,7 @@
                 <div class="card-header">{{ __('Registrar') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('store.admin') }}">
+                    <form method="POST" id="admin" action="{{ route('store.admin') }}" onsubmit="verificarPasswords();">
                         @csrf
 
                         <div class="row mb-3">
@@ -97,6 +97,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        <div id="alert" class="alert alert-danger" style="display:none" role="alert">La contraseña no coincide!!</div>
 
                         <div class="row mb-0" style="text-align: center">
                             <div class="col-md-6 offset-md-4">
@@ -131,8 +132,38 @@
     },3000);
 
 });
+//primeras letras mayusculas
+function capitalize(str){
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+        }
+        const input = document.getElementById('name');
+        input.addEventListener('keypress', e => {
+        setTimeout(() => {input.value = input.value.split(' ').map(x => capitalize(x)).join(' ')}, 1)
+        });
+        const input2 = document.getElementById('ap_pater');
+        input2.addEventListener('keypress', e => {
+        setTimeout(() => {input2.value = capitalize(input2.value)}, 1)
+        });
+        const input3 = document.getElementById('ap_mater');
+        input3.addEventListener('keypress', e => {
+        setTimeout(() => {input3.value = capitalize(input3.value)}, 1)
+        });
 
+    //Validar password
+    var adminLog = document.getElementById('admin');
+    adminLog.addEventListener("submit", (e) => {
+        pass1 = document.getElementById('password');
+        pass2 = document.getElementById('password-confirm');
 
+     if (pass1.value !== pass2.value) {
+         e.preventDefault();
+         let x = document.getElementById("alert");
+                    x.style.display = "block";
+                    setTimeout(function () {
+                    $("#alert").fadeOut(1000);
+                    }, 1000);
+  }
+});
 
     </script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
