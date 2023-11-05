@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('lib_proyectos', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+
+            $table->string('id_user');
             $table->timestamps();
         });
     }

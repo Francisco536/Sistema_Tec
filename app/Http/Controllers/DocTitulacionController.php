@@ -2,8 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AceptacionTesis;
+use App\Models\ActoRecepcional;
+use App\Models\AnteProyecto;
+use App\Models\Certificado;
+use App\Models\ConstIngles;
+use App\Models\ConstServicio;
 use App\Models\DocTitulacion;
+use App\Models\LibProyecto;
+use App\Models\NoInconveniencia;
+use App\Models\RegProyecto;
+use App\Models\SolEstudiante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class DocTitulacionController extends Controller
 {
@@ -12,10 +23,31 @@ class DocTitulacionController extends Controller
      */
     public function index()
     {
-        $collection = DocTitulacion::get();
-        //$userId = auth()->user()->id;
-        $params['collection'] = $collection;
+        $userId = auth()->user()->id;
 
+        $actoR    = ActoRecepcional::where('id_user', $userId)->exists();
+        $noInc    = NoInconveniencia::where('id_user', $userId)->exists();
+        $libPro   = LibProyecto::where('id_user', $userId)->exists();
+        $antePro  = AnteProyecto::where('id_user', $userId)->exists();
+        $regPro   = RegProyecto::where('id_user', $userId)->exists();
+        $solAlum  = SolEstudiante::where('id_user', $userId)->exists();
+        $ingles   = ConstIngles::where('id_user', $userId)->exists();
+        $servicio = ConstServicio::where('id_user', $userId)->exists();
+        $certif   = Certificado:: where('id_user', $userId)->exists();
+        $tesis    = AceptacionTesis::where('id_user', $userId)->exists();
+
+
+        $params['actoR']    = $actoR   ;
+        $params['noInc']    = $noInc   ;
+        $params['libPro']   = $libPro  ;
+        $params['antePro']  = $antePro ;
+        $params['regPro']   = $regPro  ;
+        $params['solAlum']  = $solAlum ;
+        $params['ingles']   = $ingles  ;
+        $params['servicio'] = $servicio;
+        $params['certif']   = $certif  ;
+        $params['tesis']    = $tesis;
+         Log::debug($params);
 
         return view('formularioDoc.index', $params);
     }
@@ -64,7 +96,32 @@ class DocTitulacionController extends Controller
      */
     public function create()
     {
-        return view('formularioDoc.create');
+        $userId = auth()->user()->id;
+        $actoR    = ActoRecepcional::where('id_user', $userId)->exists();
+        $noInc    = NoInconveniencia::where('id_user', $userId)->exists();
+        $libPro   = LibProyecto::where('id_user', $userId)->exists();
+        $antePro  = AnteProyecto::where('id_user', $userId)->exists();
+        $regPro   = RegProyecto::where('id_user', $userId)->exists();
+        $solAlum  = SolEstudiante::where('id_user', $userId)->exists();
+        $ingles   = ConstIngles::where('id_user', $userId)->exists();
+        $servicio = ConstServicio::where('id_user', $userId)->exists();
+        $certif   = Certificado:: where('id_user', $userId)->exists();
+        $tesis    = AceptacionTesis::where('id_user', $userId)->exists();
+
+
+        $params['actoR']    = $actoR   ;
+        $params['noInc']    = $noInc   ;
+        $params['libPro']   = $libPro  ;
+        $params['antePro']  = $antePro ;
+        $params['regPro']   = $regPro  ;
+        $params['solAlum']  = $solAlum ;
+        $params['ingles']   = $ingles  ;
+        $params['servicio'] = $servicio;
+        $params['certif']   = $certif  ;
+        $params['tesis']    = $tesis;
+         Log::debug($params);
+
+        return view('formularioDoc.create', $params);
     }
 
     /**

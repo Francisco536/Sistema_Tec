@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('acto_recepcionals', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+
+            $table->string('id_user');
             $table->timestamps();
         });
     }

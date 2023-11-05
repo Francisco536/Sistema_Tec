@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\SolEstudiante;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class SolEstudianteController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      */
@@ -20,7 +27,7 @@ class SolEstudianteController extends Controller
      */
     public function create()
     {
-        //
+        return view('formularioDoc.solicAlumno');
     }
 
     /**
@@ -28,7 +35,38 @@ class SolEstudianteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try
+        {
+            $user_id = auth()->user()->id;
+            $user_name = auth()->user()->name;
+            $name = 'Solicitud_'.$user_name;
+
+            //Se define la parte del directorio
+            $path = 'public/'.'Documentos/' .  'SolicitudAlumnos/'. $user_name;
+
+            $archivo = $request->file('name')->store($path);
+
+            $folder = Storage::url($archivo);
+
+            $Docs = new SolEstudiante();
+            $Docs->name = $folder;
+            $Docs->id_user = $user_id;
+            $Docs->save();
+            DB::commit();
+
+            $response = [
+                "code" => 200, "msg" => "Éxito"
+            ];
+            return redirect()->route('add.documentos')->with('success','Documento agregado correctamente');
+        }
+        catch(ValidationException $exception){
+            $response = [
+                "code" => 422, "msg" => "Error", "error" => $exception->errors()
+            ];
+        }
+
+        return redirect()->route('add.documentos')->with('message', 'Documento no agregado');
+
     }
 
     /**

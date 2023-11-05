@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\ConstIngles;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class ConstInglesController extends Controller
 {
@@ -20,7 +25,7 @@ class ConstInglesController extends Controller
      */
     public function create()
     {
-        //
+        return view('formularioDoc.ingles');
     }
 
     /**
@@ -28,7 +33,38 @@ class ConstInglesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try
+        {
+            $user_id = auth()->user()->id;
+            $user_name = auth()->user()->name;
+            $name = 'ConstanciaIngles_'.$user_name;
+
+            //Se define la parte del directorio
+            $path = 'public/'.'Documentos/' .  'ConstanciaIngles/'. $user_name;
+
+                $archivo = $request->file('name')->store($path);
+
+                $folder = Storage::url($archivo);
+
+            $Docs = new ConstIngles();
+            $Docs->name = $folder;
+            $Docs->id_user = $user_id;
+            $Docs->save();
+            DB::commit();
+
+            $response = [
+                "code" => 200, "msg" => "Éxito"
+            ];
+            return redirect()->route('add.documentos')->with('success','Documento agregado correctamente');
+        }
+        catch(ValidationException $exception){
+            $response = [
+                "code" => 422, "msg" => "Error", "error" => $exception->errors()
+            ];
+        }
+
+        return redirect()->route('add.documentos')->with('message', 'Documento no agregado');
+
     }
 
     /**

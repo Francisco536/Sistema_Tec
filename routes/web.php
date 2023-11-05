@@ -1,10 +1,22 @@
 <?php
 
+use App\Http\Controllers\AceptacionTesisController;
+use App\Http\Controllers\ActoRecepcionalController;
 use App\Models\Alumno;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\AnteProyectoController;
+use App\Http\Controllers\CertificadoController;
+use App\Http\Controllers\ConstInglesController;
+use App\Http\Controllers\ConstServicioController;
 use App\Http\Controllers\DocTitulacionController;
+use App\Http\Controllers\LibProyectoController;
+use App\Http\Controllers\NoInconvenienciaController;
+use App\Http\Controllers\RegProyectoController;
+use App\Http\Controllers\SolEstudianteController;
+use App\Models\NoInconveniencia;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,6 +74,37 @@ Route::middleware([
         Route::post('/store', [DocTitulacionController::class, 'store'])->name('store.documentos')->middleware('auth');
         Route::get('/{id}/detalle', [DocTitulacionController::class, 'show'])->name('ver.documentos')->middleware('auth');
         Route::get('/finalizada', [DocTitulacionController::class, 'end'])->name('end.documentos')->middleware('auth');
+
+        Route::get('/tesis', [AceptacionTesisController::class, 'create'])->name('tesis.add')->middleware('auth');
+        Route::post('/Subirtesis', [AceptacionTesisController::class, 'store'])->name('tesis.store')->middleware('auth');
+
+        Route::get('/ActoRecepcional', [ActoRecepcionalController::class, 'create'])->name('acto.add')->middleware('auth');
+        Route::post('/SubirActoRecepcional', [ActoRecepcionalController::class, 'store'])->name('acto.store')->middleware('auth');
+
+        Route::get('/NoInconveniencia', [NoInconvenienciaController::class, 'create'])->name('noInconv.add')->middleware('auth');
+        Route::post('/SubirNoInconveniencia', [NoInconvenienciaController::class, 'store'])->name('noInconv.store')->middleware('auth');
+
+        Route::get('/LiberacionProyecto', [LibProyectoController::class, 'create'])->name('libProyec.add')->middleware('auth');
+        Route::post('/SubirLiberacionProyecto', [LibProyectoController::class, 'store'])->name('libProyec.store')->middleware('auth');
+
+        Route::get('/AnteProyecto', [AnteProyectoController::class, 'create'])->name('anteProyec.add')->middleware('auth');
+        Route::post('/SubirAnteProyecto', [AnteProyectoController::class, 'store'])->name('anteProyec.store')->middleware('auth');
+
+        Route::get('/RegistroProyecto', [RegProyectoController::class, 'create'])->name('regProyecto.add')->middleware('auth');
+        Route::post('/SubirRegistroProyecto', [RegProyectoController::class, 'store'])->name('regProyecto.store')->middleware('auth');
+
+        Route::get('/SolicitudAlumno', [SolEstudianteController::class, 'create'])->name('solAlumno.add')->middleware('auth');
+        Route::post('/SubirSolicitudAlumno', [SolEstudianteController::class, 'store'])->name('solAlumno.store')->middleware('auth');
+
+        Route::get('/ConstanciaIngles', [ConstInglesController::class, 'create'])->name('ingles.add')->middleware('auth');
+        Route::post('/SubirConstanciaIngles', [ConstInglesController::class, 'store'])->name('ingles.store')->middleware('auth');
+
+        Route::get('/ServicioSocial', [ConstServicioController::class, 'create'])->name('servicio.add')->middleware('auth');
+        Route::post('/SubirServicioSocial', [ConstServicioController::class, 'store'])->name('servicio.store')->middleware('auth');
+
+        Route::get('/Certificado', [CertificadoController::class, 'create'])->name('certificado.add')->middleware('auth');
+        Route::post('/SubirCertificado', [CertificadoController::class, 'store'])->name('certificado.store')->middleware('auth');
+
     });
 
 });

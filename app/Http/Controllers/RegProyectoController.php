@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\RegProyecto;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class RegProyectoController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -20,7 +26,7 @@ class RegProyectoController extends Controller
      */
     public function create()
     {
-        //
+        return view('formularioDoc.registroProyec');
     }
 
     /**
@@ -28,7 +34,39 @@ class RegProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try
+        {
+            $user_id = auth()->user()->id;
+            $user_name = auth()->user()->name;
+            $name = 'RegistroProyecto_'.$user_name;
+
+            //Se define la parte del directorio
+            $path = 'public/'.'Documentos/' .  'RegistroProyecto/'. $user_name;
+
+                $archivo = $request->file('name')->store($path);
+
+                $folder = Storage::url($archivo);
+
+            $Docs = new RegProyecto();
+            $Docs->name = $folder;
+            $Docs->id_user = $user_id;
+
+            $Docs->save();
+            DB::commit();
+
+            $response = [
+                "code" => 200, "msg" => "Éxito"
+            ];
+            return redirect()->route('add.documentos')->with('success','Documento agregado correctamente');
+        }
+        catch(ValidationException $exception){
+            $response = [
+                "code" => 422, "msg" => "Error", "error" => $exception->errors()
+            ];
+        }
+
+        return redirect()->route('add.documentos')->with('message', 'Documento no agregado');
+
     }
 
     /**
