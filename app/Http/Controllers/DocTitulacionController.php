@@ -13,8 +13,10 @@ use App\Models\LibProyecto;
 use App\Models\NoInconveniencia;
 use App\Models\RegProyecto;
 use App\Models\SolEstudiante;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class DocTitulacionController extends Controller
 {
@@ -57,12 +59,15 @@ class DocTitulacionController extends Controller
      */
     public function indexCom()
     {
-        $collection = DocTitulacion::get();
-        //$userId = auth()->user()->id;
-        $params['collection'] = $collection;
 
 
-        return view('formularioDoc.completo', $params);
+
+               return view('formularioDoc.completo');
+
+
+
+
+
     }
 
     /**
@@ -70,12 +75,10 @@ class DocTitulacionController extends Controller
      */
     public function indexInc()
     {
-        $collection = DocTitulacion::get();
-        //$userId = auth()->user()->id;
-        $params['collection'] = $collection;
 
 
-        return view('formularioDoc.proceso', $params);
+
+        return view('formularioDoc.proceso');
     }
 
     /**
@@ -83,12 +86,24 @@ class DocTitulacionController extends Controller
      */
     public function indexVac()
     {
-        $collection = DocTitulacion::get();
-        //$userId = auth()->user()->id;
-        $params['collection'] = $collection;
+        $userId = auth()->user()->id;
 
+        $actoR    = ActoRecepcional::where('id_user', $userId)->exists();
+        $noInc    = NoInconveniencia::where('id_user', $userId)->exists();
+        $libPro   = LibProyecto::where('id_user', $userId)->exists();
+        $antePro  = AnteProyecto::where('id_user', $userId)->exists();
+        $regPro   = RegProyecto::where('id_user', $userId)->exists();
+        $solAlum  = SolEstudiante::where('id_user', $userId)->exists();
+        $ingles   = ConstIngles::where('id_user', $userId)->exists();
+        $servicio = ConstServicio::where('id_user', $userId)->exists();
+        $certif   = Certificado:: where('id_user', $userId)->exists();
+        $tesis    = AceptacionTesis::where('id_user', $userId)->exists();
 
-        return view('formularioDoc.incompleto', $params);
+        if($actoR = false && $noInc==false && $libPro==false && $antePro==false && $regPro==false && $solAlum==false && $ingles==false && $servicio==false && $certif==false && $tesis==false && $tesis==false){
+
+        }
+
+        return view('formularioDoc.incompleto');
     }
 
     /**
@@ -135,9 +150,36 @@ class DocTitulacionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(DocTitulacion $docTitulacion)
+    public function show($id)
     {
-        //
+        $actoR    = ActoRecepcional::select('name')->where('id_user', $id)->exists();
+        $noInc    = NoInconveniencia::select('*')->where('id_user', $id)->exists();
+        $libPro   = LibProyecto::select('*')->where('id_user', $id)->exists();
+        $antePro  = AnteProyecto::select('*')->where('id_user', $id)->exists();
+        $regPro   = RegProyecto::select('*')->where('id_user', $id)->exists();
+        $solAlum  = SolEstudiante::select('*')->where('id_user', $id)->exists();
+        $ingles   = ConstIngles::select('*')->where('id_user', $id)->exists();
+        $servicio = ConstServicio::select('*')->where('id_user', $id)->exists();
+        $certif   = Certificado::select('*')->where('id_user', $id)->exists();
+        $tesis    = AceptacionTesis::select('*')->where('id_user', $id)->exists();
+
+
+
+
+        $params['actoR']    = $actoR   ;
+        $params['noInc']    = $noInc   ;
+        $params['libPro']   = $libPro  ;
+        $params['antePro']  = $antePro ;
+        $params['regPro']   = $regPro  ;
+        $params['solAlum']  = $solAlum ;
+        $params['ingles']   = $ingles  ;
+        $params['servicio'] = $servicio;
+        $params['certif']   = $certif  ;
+        $params['tesis']    = $tesis;
+        $params['id'] = $id ;
+
+
+        return view('formularioDoc.show', $params);
     }
 
     /**
@@ -163,4 +205,126 @@ class DocTitulacionController extends Controller
     {
         //
     }
+
+    /**
+     * Descargar documento desde storage.
+     */
+    public function descarga($id)
+    {
+
+        $buscar= ActoRecepcional::Select('name')->where('id_user', $id)->first();
+        $ruta = $buscar->name = public_path().$buscar->name ;
+        //dd($ruta);
+        //dd(Storage::exists(public_path().$buscar->name));
+        $headers = [
+            "Content-Type" => "application/octet-stream",
+        ];
+        return response()->download($ruta);
+
+    }
+
+    //Descargar No Inconveniencia
+    public function descarga2($id)
+    {
+        $buscar= NoInconveniencia::Select('name')->where('id_user', $id)->first();
+        $ruta = $buscar->name = public_path().$buscar->name ;
+        $headers = [
+            "Content-Type" => "application/octet-stream",
+        ];
+        return response()->download($ruta);
+
+    }
+
+    //Descargar Liberacion de Proyecto
+    public function descarga3($id)
+    {
+        $buscar= LibProyecto::Select('name')->where('id_user', $id)->first();
+        $ruta = $buscar->name = public_path().$buscar->name ;
+        $headers = [
+            "Content-Type" => "application/octet-stream",
+        ];
+        return response()->download($ruta);
+
+    }
+
+    //Descargar AnteProyecto
+    public function descarga4($id)
+    {
+        $buscar= AnteProyecto::Select('name')->where('id_user', $id)->first();
+        $ruta = $buscar->name = public_path().$buscar->name ;
+        $headers = [
+            "Content-Type" => "application/octet-stream",
+        ];
+        return response()->download($ruta);
+
+    }
+
+        //Descargar Registro de Proyecto
+    public function descarga5($id)
+    {
+        $buscar= RegProyecto::Select('name')->where('id_user', $id)->first();
+        $ruta = $buscar->name = public_path().$buscar->name ;
+        $headers = [
+            "Content-Type" => "application/octet-stream",
+        ];
+        return response()->download($ruta);
+
+    }
+        //Descargar Solicutud alumno
+    public function descarga6($id)
+    {
+        $buscar= SolEstudiante::Select('name')->where('id_user', $id)->first();
+        $ruta = $buscar->name = public_path().$buscar->name ;
+        $headers = [
+            "Content-Type" => "application/octet-stream",
+        ];
+        return response()->download($ruta);
+    }
+
+        //Descargar Constancia de ingles
+    public function descarga7($id)
+    {
+        $buscar= ConstIngles::Select('name')->where('id_user', $id)->first();
+        $ruta = $buscar->name = public_path().$buscar->name ;
+        $headers = [
+            "Content-Type" => "application/octet-stream",
+        ];
+        return response()->download($ruta);
+
+    }
+          //Descargar Constancia de Servicio Social
+    public function descarga8($id)
+    {
+        $buscar= ConstServicio::Select('name')->where('id_user', $id)->first();
+        $ruta = $buscar->name = public_path().$buscar->name ;
+        $headers = [
+            "Content-Type" => "application/octet-stream",
+        ];
+        return response()->download($ruta);
+
+    }
+          //Descargar Certificado
+    public function descarga9($id)
+    {
+        $buscar= Certificado::Select('name')->where('id_user', $id)->first();
+        $ruta = $buscar->name = public_path().$buscar->name ;
+        $headers = [
+            "Content-Type" => "application/octet-stream",
+        ];
+        return response()->download($ruta);
+
+    }
+            //Descargar Aceptacion Tesis
+    public function descarga10($id)
+    {
+        $buscar= AceptacionTesis::Select('name')->where('id_user', $id)->first();
+        $ruta = $buscar->name = public_path().$buscar->name ;
+        $headers = [
+            "Content-Type" => "application/octet-stream",
+        ];
+        return response()->download($ruta);
+
+    }
+
+
 }

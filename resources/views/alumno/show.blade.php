@@ -105,21 +105,15 @@
 
                             </div>
                         </div>
+                        <div class="text-center">
+                            <a  href="{{ route("ver.documentos", $alumno->id) }}"  class="btn btn-rounded bg-teal mb-3" data-toggle="tooltip" data-placement="top" title="Ver Documentos"><i class="fa fa-eye"></i> Ver Documentos</a>
 
 
-
-                        {{-- <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Contraseña') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div> --}}
-
-
-                                <a href="{{url()->previous()}}" class="btn btn-danger">
+                               <a href="{{url()->previous()}}" class="btn btn-danger mb-3">
                                     {{ __('Cancelar') }}
                                 </a>
+
+                        </div>
                             </div>
                         </div>
                     </form>

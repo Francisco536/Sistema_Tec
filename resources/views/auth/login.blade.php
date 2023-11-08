@@ -1,10 +1,10 @@
 <x-guest-layout>
+
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
 
-        <x-validation-errors class="mb-4" />
 
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
@@ -17,10 +17,10 @@
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                   <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#admin">Administrador</a>
+                    <a class="nav-link active" data-bs-toggle="tab"  href="#admin">Administrador</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#alumno">Alumno</a>
+                    <a class="nav-link" data-bs-toggle="tab"  href="#alumno">Alumno</a>
                   </li>
 
                 </ul>
@@ -29,7 +29,8 @@
               {{-- action="{{ route('login') }}" --}}
 <div class="tab-content">
     <div id="admin" class="container tab-pane active">
-        <h3>Iniciar Sesion</h3>
+        <br>
+        <h3>Iniciar Sesión como Administrador</h3>
         <form  method="POST" id="admin" action="{{ route('login') }}" >
             @csrf
 
@@ -43,12 +44,12 @@
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-
-                <x-button class="ml-4" >
+            <div class="flex items-center justify-center mt-4">
+                <x-button class="ml-4" style="background-color: rgb(51, 105, 105)">
                     {{ __('Iniciar Sesión') }}
                 </x-button>
             </div>
+            <br>
         </form>
 
 
@@ -56,7 +57,8 @@
     </div>
 
     <div id="alumno" class="container tab-pane fade">
-        <h3>Iniciar Sesion</h3>
+        <br>
+        <h3>Iniciar Sesión como Estudiante</h3>
         <form  id="alumno" name="formulariologina" method="POST"  action="{{ route('login') }}">
             @csrf
             <div>
@@ -69,11 +71,12 @@
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button class="ml-4" id="alumno" name="alumno">
+            <div class="flex justify-center mt-4" >
+                <x-button class="ml-4" id="alumno" name="alumno" style="background-color: rgb(51, 105, 105)">
                     {{ __('Iniciar Sesión') }}
                 </x-button>
             </div>
+            <br>
         </form>
 
     </div>

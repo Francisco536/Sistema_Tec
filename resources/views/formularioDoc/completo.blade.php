@@ -35,7 +35,7 @@
 
                                     <td>
                                         <div class="btn-group">
-                                            <a  href="{{ route("ver.documento", $value->id) }}"  class="btn-sm btn-rounded btn-warning mb-3" data-toggle="tooltip" data-placement="top" title="Ver Encuesta"><i class="fa fa-eye"></i></a>
+                                            <a    class="btn-sm btn-rounded btn-warning mb-3" data-toggle="tooltip" data-placement="top" title="Ver Encuesta"><i class="fa fa-eye"></i></a>
                                             {{-- <a href="#" class="btn-sm btn-rounded btn-danger mb-3" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fa fa-trash"></i></a> --}}
                                             {{-- <a href="#" data-url="{{ route("note.destroy", $value->id) }}" data-message="¿Estas seguro de eliminar {{ $value->message }}?" class="btn btn-danger btn-sm btn-destroy"><i class="fa fa-trash-o fa-fw fa-lg"></i>Eliminar</a> --}}
                                         </div>

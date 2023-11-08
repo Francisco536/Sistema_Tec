@@ -72,7 +72,7 @@ Route::middleware([
         Route::get('/realizadas', [DocTitulacionController::class, 'realizadas'])->name('realizadas.documentos')->middleware('auth');
         Route::get('/cargarDocumentos', [DocTitulacionController::class, 'create'])->name('add.documentos')->middleware('auth');
         Route::post('/store', [DocTitulacionController::class, 'store'])->name('store.documentos')->middleware('auth');
-        Route::get('/{id}/detalle', [DocTitulacionController::class, 'show'])->name('ver.documentos')->middleware('auth');
+        Route::get('/{id}/DocumentosAlumno', [DocTitulacionController::class, 'show'])->name('ver.documentos')->middleware('auth');
         Route::get('/finalizada', [DocTitulacionController::class, 'end'])->name('end.documentos')->middleware('auth');
 
         Route::get('/tesis', [AceptacionTesisController::class, 'create'])->name('tesis.add')->middleware('auth');
@@ -104,6 +104,17 @@ Route::middleware([
 
         Route::get('/Certificado', [CertificadoController::class, 'create'])->name('certificado.add')->middleware('auth');
         Route::post('/SubirCertificado', [CertificadoController::class, 'store'])->name('certificado.store')->middleware('auth');
+
+        Route::get('/{id}/descarga', [DocTitulacionController::class, 'descarga'])->name('descarga.documento')->middleware('auth');
+        Route::get('/{id}/descarga2', [DocTitulacionController::class, 'descarga2'])->name('descarga.documento2')->middleware('auth');
+        Route::get('/{id}/descarga3', [DocTitulacionController::class, 'descarga3'])->name('descarga.documento3')->middleware('auth');
+        Route::get('/{id}/descarga4', [DocTitulacionController::class, 'descarga4'])->name('descarga.documento4')->middleware('auth');
+        Route::get('/{id}/descarga5', [DocTitulacionController::class, 'descarga5'])->name('descarga.documento5')->middleware('auth');
+        Route::get('/{id}/descarga6', [DocTitulacionController::class, 'descarga6'])->name('descarga.documento6')->middleware('auth');
+        Route::get('/{id}/descarga7', [DocTitulacionController::class, 'descarga7'])->name('descarga.documento7')->middleware('auth');
+        Route::get('/{id}/descarga8', [DocTitulacionController::class, 'descarga8'])->name('descarga.documento8')->middleware('auth');
+        Route::get('/{id}/descarga9', [DocTitulacionController::class, 'descarga9'])->name('descarga.documento9')->middleware('auth');
+        Route::get('/{id}/descarga10', [DocTitulacionController::class, 'descarga10'])->name('descarga.documento10')->middleware('auth');
 
     });
 

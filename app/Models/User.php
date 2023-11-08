@@ -81,16 +81,16 @@ class User extends Authenticatable
         return $rolUser;
     }
     public function user_perfil(){
-        return $this->hasOne('App\Models\AceptacionTesis', 'id_user', 'id');
+        // return $this->hasOne('App\Models\AceptacionTesis', 'id_user', 'id');
         return $this->hasOne('App\Models\ActoRecepcional', 'id_user', 'id');
-        return $this->hasOne('App\Models\AnteProyecto', 'id_user', 'id');
-        return $this->hasOne('App\Models\Certificado', 'id_user', 'id');
-        return $this->hasOne('App\Models\ConstIngles', 'id_user', 'id');
-        return $this->hasOne('App\Models\ConstServicio', 'id_user', 'id');
-        return $this->hasOne('App\Models\LibProyecto', 'id_user', 'id');
-        return $this->hasOne('App\Models\NoInconveniencia', 'id_user', 'id');
-        return $this->hasOne('App\Models\RegProyecto', 'id_user', 'id');
-        return $this->hasOne('App\Models\SolEstudiante', 'id_user', 'id');
+        // return $this->hasOne('App\Models\AnteProyecto', 'id_user', 'id');
+        // return $this->hasOne('App\Models\Certificado', 'id_user', 'id');
+        // return $this->hasOne('App\Models\ConstIngles', 'id_user', 'id');
+        // return $this->hasOne('App\Models\ConstServicio', 'id_user', 'id');
+        // return $this->hasOne('App\Models\LibProyecto', 'id_user', 'id');
+        // return $this->hasOne('App\Models\NoInconveniencia', 'id_user', 'id');
+        // return $this->hasOne('App\Models\RegProyecto', 'id_user', 'id');
+        // return $this->hasOne('App\Models\SolEstudiante', 'id_user', 'id');
     }
 
 }
