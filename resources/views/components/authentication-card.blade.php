@@ -10,4 +10,4 @@
         {{ $slot }}
     </div>
 </div>
-{{-- style="background-image: url(assets/img/tec.jpg); width: 100%; height: 20%;" --}}
+
