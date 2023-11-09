@@ -45,8 +45,8 @@ class AdminController extends Controller
         try
         {
 
-         $dupli = User::where('email',$request->email);
-        if($dupli != null){
+         $dupli = User::where('email',$request->email)->exists();
+        if($dupli == false){
          User::create([
             'name' => $request['name'],
             'ap_pater' => $request['ap_pater'],

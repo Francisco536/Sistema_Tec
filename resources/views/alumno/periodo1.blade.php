@@ -18,9 +18,7 @@
         @endif
         <div class="card-header">
             <div class="d-flex justify-content-end">
-                <div class="col-md-2">
-                    <a href="{{route('add.alumno')}}" type="button" class="btn btn-success btn-block"><i class="fas fa-plus"></i> Nuevo</a>
-                </div>
+
             </div>
             <div class="d-flex justify-content-start">
                 <form class="d-flex" role="search" action="{{route('lista.alumnoP1')}}" method="GET">

@@ -145,9 +145,9 @@ class AlumnoController extends Controller
     {
         try
         {
-            $dupli = User::where('email',$request->email);
+            $dupli = User::where('email',$request->email)->exists();
 
-            if($dupli != null){
+            if($dupli == false){
 
             User::create([
                 'name' => $request['name'],
@@ -184,6 +184,7 @@ class AlumnoController extends Controller
                 return redirect()->route('lista.alumno')->with('success','Usuario agregado correctamente');
 
          }else{
+
             return redirect()->route('add.alumno')->with('message','El correo ya existe, ingrese uno nuevo');
          }
 
