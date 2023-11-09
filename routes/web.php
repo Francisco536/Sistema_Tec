@@ -78,6 +78,8 @@ Route::middleware([
         Route::post('/store', [DocTitulacionController::class, 'store'])->name('store.documentos')->middleware('auth');
         Route::get('/{id}/DocumentosAlumno', [DocTitulacionController::class, 'show'])->name('ver.documentos')->middleware('auth');
         Route::get('/finalizada', [DocTitulacionController::class, 'end'])->name('end.documentos')->middleware('auth');
+        Route::get('/Documentos/{id}/Notificacion', [DocTitulacionController::class, 'email'])->name('crear.correo')->middleware('auth');
+        Route::post('/enviar/Notificacion', [DocTitulacionController::class, 'Sendemail'])->name('enviar.correo')->middleware('auth');
 
         Route::get('/tesis', [AceptacionTesisController::class, 'create'])->name('tesis.add')->middleware('auth');
         Route::post('/Subirtesis', [AceptacionTesisController::class, 'store'])->name('tesis.store')->middleware('auth');
