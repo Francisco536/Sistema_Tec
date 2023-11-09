@@ -58,11 +58,12 @@ class AlumnoController extends Controller
         $no_control = $request->no_control;
         $collection = User::whereHas('roles', function ($query) {
             $query->where('name', 'Alumno');
-        })->where('carrera', 'agronomia')->paginate(10);
+        })->where('carrera', 'Ing. en Agronomía')->paginate(10);
 
         if($no_control){
-            $collection = User::where('no_control', 'like', '%'.$no_control.'%')
-            ->with('roles')->select('*')->paginate(10);
+            $collection = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Alumno');
+            })->where('no_control', 'like', '%'.$no_control.'%')->where('carrera', 'Ing. en Agronomía')->paginate(10);
 
         }
 
@@ -86,8 +87,10 @@ class AlumnoController extends Controller
         })->where('carrera', 'Ing. en Gestión Empresarial')->paginate(10);
 
         if($no_control){
-            $collection = User::where('no_control', 'like', '%'.$no_control.'%')
-            ->with('roles')->select('*')->paginate(10);
+            $collection = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Alumno');
+            })->where('no_control', 'like', '%'.$no_control.'%')->where('carrera', 'Ing. en Gestión Empresarial')->paginate(10);
+
 
         }
 
@@ -111,13 +114,11 @@ class AlumnoController extends Controller
         })->where('carrera', 'Ing. en Sistemas Computacionales')->paginate(10);
 
         if($no_control){
-            $collection = User::where('no_control', 'like', '%'.$no_control.'%')
-            ->with('roles')->select('*')->paginate(10);
+            $collection = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Alumno');
+            })->where('no_control', 'like', '%'.$no_control.'%')->where('carrera', 'Ing. en Sistemas Computacionales')->paginate(10);
 
         }
-
-
-
         $params['no_control'] = $no_control;
         $params['collection'] = $collection;
         return view('alumno.sistemas', $params);
@@ -145,6 +146,7 @@ class AlumnoController extends Controller
         try
         {
             $dupli = User::where('email',$request->email);
+
             if($dupli != null){
 
             User::create([
@@ -295,5 +297,50 @@ class AlumnoController extends Controller
         //
         User::destroy($id);
         return redirect()->route('lista.alumno')->with('message','Usuario eliminado correctamente');
+    }
+
+       /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function periodo1(Request $request)
+    {
+        $anio = $request->anio;
+        $collection = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Alumno');
+        })->whereMonth('created_at', '>=', '01')->whereMonth('created_at', '<=', '06')->paginate(10);
+
+        if($anio){
+            $collection = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Alumno');
+            })->where('anio', 'like', '%'.$anio.'%')->whereMonth('created_at', '>=', '01')->whereMonth('created_at', '<=', '06')->paginate(10);
+
+        }
+        $params['anio'] = $anio;
+        $params['collection'] = $collection;
+        return view('alumno.periodo1', $params);
+    }
+         /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function periodo2(Request $request)
+    {
+        $anio = $request->anio;
+        $collection = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Alumno');
+        })->whereMonth('created_at', '>=', '07')->whereMonth('created_at', '<=', '12')->paginate(10);
+
+        if($anio){
+            $collection = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Alumno');
+            })->where('anio', 'like', '%'.$anio.'%')->whereMonth('created_at', '>=', '07')->whereMonth('created_at', '<=', '12')->paginate(10);
+
+        }
+        $params['anio'] = $anio;
+        $params['collection'] = $collection;
+        return view('alumno.periodo2', $params);
     }
 }

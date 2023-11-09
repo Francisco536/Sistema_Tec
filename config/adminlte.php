@@ -321,17 +321,33 @@ return [
             'can'         => 'lista.admin',
         ],
         [
-            'text'        => ' Alumnos',
-            'route'       => 'lista.alumno',
-            'icon'        => 'fas fa-user-graduate',
-            'can'         => 'lista.alumno',
+            'text' => ' Alumnos',
+            'icon' => 'far fa-address-card',
+            'submenu' => [
+                            [
+                                'text' => 'Alumnos',
+                                'icon' => 'fas fa-user-graduate',
+                                'route'  => 'lista.alumno',
+                            ],
+                            [
+                                'text' => 'Periodo Enero-Julio',
+                                'icon' => 'fas fa-book-reader',
+                                'route'  => 'lista.alumnoP1',
+                            ],
+                            [
+                                'text' => 'Periodo Agosto-Diciembre',
+                                'icon' => 'fas fa-book-reader',
+                                'route'  => 'lista.alumnoP2',
+                            ],
         ],
+        'can' => 'lista.alumno',
+    ],
          ['header' => 'Carreras',
          'can'         => 'lista.alumno',
 
         ],
         [
-            'text'  => ' Agronomia',
+            'text'  => 'Ingeniería en Agronomía',
             'route' => 'lista.alumnoAgro',
             'icon'  => 'fas fa-seedling',
             'can'   => 'lista.alumnoAgro',

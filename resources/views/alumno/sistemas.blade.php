@@ -23,11 +23,11 @@
                 </div>
             </div>
             <div class="d-flex justify-content-start">
-                <form class="d-flex" role="search" action="{{route('lista.alumno')}}" method="GET">
+                <form class="d-flex" role="search" action="{{route('lista.alumnoSis')}}" method="GET">
 
                     <input name="no_control" class="form-control me-2" type="search" placeholder="No. Control" aria-label="Search" value="{{$no_control}}" required>
                     <button class="btn btn-success" type="submit">Buscar</button>
-                    <a class="btn btn-warning" id="limpiar" href="{{route('lista.alumno')}}">Limpiar</a>
+                    <a class="btn btn-warning" id="limpiar" href="{{route('lista.alumnoSis')}}">Limpiar</a>
                   </form>
             </div>
 

@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h4>Agronomia alumnos</h4>
+    <h4>Ing. en Agronomía alumnos</h4>
 @stop
 
 @section('content')
@@ -23,11 +23,11 @@
                 </div>
             </div>
             <div class="d-flex justify-content-start">
-                <form class="d-flex" role="search" action="{{route('lista.alumno')}}" method="GET">
+                <form class="d-flex" role="search" action="{{route('lista.alumnoAgro')}}" method="GET">
 
                     <input name="no_control" class="form-control me-2" type="search" placeholder="No. Control" aria-label="Search" value="{{$no_control}}" required>
                     <button class="btn btn-success" type="submit">Buscar</button>
-                    <a class="btn btn-warning" id="limpiar" href="{{route('lista.alumno')}}">Limpiar</a>
+                    <a class="btn btn-warning" id="limpiar" href="{{route('lista.alumnoAgro')}}">Limpiar</a>
                   </form>
             </div>
 

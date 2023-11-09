@@ -86,7 +86,7 @@
                             <div class="col-md-6">
 
                                 <select id="carrera" name="carrera" class="form-control select2" style="width: 100%;" required>
-                                    <option selected="selected" value="Agronomia">Agronomia</option>
+                                    <option selected="selected" value="Agronomia">Ing. en Agronomía</option>
                                     <option value="Ing. en Gestión Empresarial" >Ing. en Gestión Empresarial</option>
                                     <option value="Ing. en Sistemas Computacionales">Ing. en Sistemas Computacionales</option>
 
