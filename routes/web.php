@@ -15,6 +15,7 @@ use App\Http\Controllers\LibProyectoController;
 use App\Http\Controllers\NoInconvenienciaController;
 use App\Http\Controllers\RegProyectoController;
 use App\Http\Controllers\SolEstudianteController;
+use App\Models\AceptacionTesis;
 use App\Models\NoInconveniencia;
 
 /*
@@ -62,6 +63,9 @@ Route::middleware([
         Route::get('/{id}/edit', [AlumnoController::class, 'edit'])->name('edit.alumno')->middleware('auth');
         Route::post('/update/{id}', [AlumnoController::class, 'update'])->name('update.alumno')->middleware('auth');
         Route::get('destroy/{alumno}', [AlumnoController::class, 'destroy'])->name("destroy.alumno")->middleware('auth');
+
+        Route::get('/index/periodo1', [AlumnoController::class, 'periodo1'])->name('lista.alumnoP1')->middleware('auth');
+        Route::get('/index/periodo2', [AlumnoController::class, 'periodo2'])->name('lista.alumnoP2')->middleware('auth');
     });
 
     Route::group(['prefix' => 'documentos'], function(){
@@ -77,33 +81,54 @@ Route::middleware([
 
         Route::get('/tesis', [AceptacionTesisController::class, 'create'])->name('tesis.add')->middleware('auth');
         Route::post('/Subirtesis', [AceptacionTesisController::class, 'store'])->name('tesis.store')->middleware('auth');
+        Route::get('/edittesis', [AceptacionTesisController::class, 'edit'])->name('tesis.edit')->middleware('auth');
+        Route::post('/UpdateTesis/{id}', [AceptacionTesisController::class, 'update'])->name('tesis.update')->middleware('auth');
 
         Route::get('/ActoRecepcional', [ActoRecepcionalController::class, 'create'])->name('acto.add')->middleware('auth');
         Route::post('/SubirActoRecepcional', [ActoRecepcionalController::class, 'store'])->name('acto.store')->middleware('auth');
+        Route::get('/editActoRecepcional', [ActoRecepcionalController::class, 'edit'])->name('acto.edit')->middleware('auth');
+        Route::post('/UpdateActoRecepcional/{id}', [ActoRecepcionalController::class, 'update'])->name('acto.update')->middleware('auth');
+
 
         Route::get('/NoInconveniencia', [NoInconvenienciaController::class, 'create'])->name('noInconv.add')->middleware('auth');
         Route::post('/SubirNoInconveniencia', [NoInconvenienciaController::class, 'store'])->name('noInconv.store')->middleware('auth');
+        Route::get('/editNoInconveniencia', [NoInconvenienciaController::class, 'edit'])->name('noInconv.edit')->middleware('auth');
+        Route::post('/UpdateNoInconveniencia/{id}', [NoInconvenienciaController::class, 'update'])->name('noInconv.update')->middleware('auth');
 
         Route::get('/LiberacionProyecto', [LibProyectoController::class, 'create'])->name('libProyec.add')->middleware('auth');
         Route::post('/SubirLiberacionProyecto', [LibProyectoController::class, 'store'])->name('libProyec.store')->middleware('auth');
+        Route::get('/editLiberacionProyecto', [LibProyectoController::class, 'edit'])->name('libProyec.edit')->middleware('auth');
+        Route::post('/UpdateLiberacionProyecto', [LibProyectoController::class, 'update'])->name('libProyec.update')->middleware('auth');
 
         Route::get('/AnteProyecto', [AnteProyectoController::class, 'create'])->name('anteProyec.add')->middleware('auth');
         Route::post('/SubirAnteProyecto', [AnteProyectoController::class, 'store'])->name('anteProyec.store')->middleware('auth');
+        Route::get('/editAnteProyecto', [AnteProyectoController::class, 'edit'])->name('anteProyec.edit')->middleware('auth');
+        Route::post('/UpdateAnteProyecto/{id}', [AnteProyectoController::class, 'update'])->name('anteProyec.update')->middleware('auth');
 
         Route::get('/RegistroProyecto', [RegProyectoController::class, 'create'])->name('regProyecto.add')->middleware('auth');
         Route::post('/SubirRegistroProyecto', [RegProyectoController::class, 'store'])->name('regProyecto.store')->middleware('auth');
+        Route::get('/editRegistroProyecto', [RegProyectoController::class, 'edit'])->name('regProyecto.edit')->middleware('auth');
+        Route::post('/UpdateRegistroProyecto/{id}', [RegProyectoController::class, 'update'])->name('regProyecto.update')->middleware('auth');
 
         Route::get('/SolicitudAlumno', [SolEstudianteController::class, 'create'])->name('solAlumno.add')->middleware('auth');
         Route::post('/SubirSolicitudAlumno', [SolEstudianteController::class, 'store'])->name('solAlumno.store')->middleware('auth');
+        Route::get('/editSolicitudAlumno', [SolEstudianteController::class, 'edit'])->name('solAlumno.edit')->middleware('auth');
+        Route::post('/UpdateSolicitudAlumno/{id}', [SolEstudianteController::class, 'update'])->name('solAlumno.update')->middleware('auth');
 
         Route::get('/ConstanciaIngles', [ConstInglesController::class, 'create'])->name('ingles.add')->middleware('auth');
         Route::post('/SubirConstanciaIngles', [ConstInglesController::class, 'store'])->name('ingles.store')->middleware('auth');
+        Route::get('/editConstanciaIngles', [ConstInglesController::class, 'edit'])->name('ingles.edit')->middleware('auth');
+        Route::post('/UpdateConstanciaIngles/{id}', [ConstInglesController::class, 'update'])->name('ingles.update')->middleware('auth');
 
         Route::get('/ServicioSocial', [ConstServicioController::class, 'create'])->name('servicio.add')->middleware('auth');
         Route::post('/SubirServicioSocial', [ConstServicioController::class, 'store'])->name('servicio.store')->middleware('auth');
+        Route::get('/editServicioSocial', [ConstServicioController::class, 'edit'])->name('servicio.edit')->middleware('auth');
+        Route::post('/UpdateServicioSocial/{id}', [ConstServicioController::class, 'update'])->name('servicio.update')->middleware('auth');
 
         Route::get('/Certificado', [CertificadoController::class, 'create'])->name('certificado.add')->middleware('auth');
         Route::post('/SubirCertificado', [CertificadoController::class, 'store'])->name('certificado.store')->middleware('auth');
+        Route::get('/editCertificado', [CertificadoController::class, 'edit'])->name('certificado.edit')->middleware('auth');
+        Route::post('/UpdateCertificado/{id}', [CertificadoController::class, 'update'])->name('certificado.update')->middleware('auth');
 
         Route::get('/{id}/descarga', [DocTitulacionController::class, 'descarga'])->name('descarga.documento')->middleware('auth');
         Route::get('/{id}/descarga2', [DocTitulacionController::class, 'descarga2'])->name('descarga.documento2')->middleware('auth');

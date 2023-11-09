@@ -80,17 +80,46 @@ class RegProyectoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RegProyecto $regProyecto)
+    public function edit()
     {
-        //
+        $id = auth()->user()->id;
+        $file  = RegProyecto::where('id_user', $id)->first();
+        return view('formularioDoc.Update.registroProyec', compact('file'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RegProyecto $regProyecto)
+    public function update(Request $request, $id)
     {
-        //
+        try
+        {
+
+            $user_name = auth()->user()->name;
+
+
+            //Se define la parte del directorio
+            $path = 'public/'.'Documentos/' .  'RegistroProyecto/'. $user_name;
+
+            $archivo = $request->file('name')->store($path);
+
+            $folder = Storage::url($archivo);
+
+            RegProyecto::where('id', $id)->update([
+               'name' => $folder]);
+
+            $response = [
+                "code" => 200, "msg" => "Éxito"
+            ];
+            return redirect()->route('add.documentos')->with('success','Documento actualizado correctamente');
+        }
+        catch(ValidationException $exception){
+            $response = [
+                "code" => 422, "msg" => "Error", "error" => $exception->errors()
+            ];
+        }
+
+        return redirect()->route('add.documentos')->with('message', 'Documento no actualizado');
     }
 
     /**
