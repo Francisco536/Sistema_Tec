@@ -34,12 +34,12 @@
         <form  method="POST" id="admin" action="{{ route('login') }}" >
             @csrf
 
-            <div>
+            <div class="form-outline mb-4">
                 <x-label for="email" value="{{ __('Correo') }}" />
                 <x-input id="login" class="block mt-1 w-full" type="email" name="login" :value="old('email')" required autofocus autocomplete="username" />
             </div>
 
-            <div class="mt-4">
+            <div class="form-outline mb-4">
                 <x-label for="password" value="{{ __('Contraseña') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
@@ -78,12 +78,9 @@
             </div>
             <br>
         </form>
-
     </div>
 </div>
-
-        </div>
-
+ </div>
     </x-authentication-card>
 </x-guest-layout>
 @section('js')

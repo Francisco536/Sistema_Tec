@@ -6,9 +6,19 @@
 
 @section('content')
     <div class="card">
+        @if (session('success'))
+        <div class="alert alert-success" role="success">
+            {{session('success')}}
+        </div>
+        @endif
+        @if (session('message'))
+        <div class="alert alert-danger" role="message">
+            {{session('message')}}
+        </div>
+        @endif
         <div class="card-header">
             <div class="d-flex justify-content-end">
-                <a class="btn btn-rounded bg-teal mb-3" data-toggle="tooltip" data-placement="top" title="Notificar"><i class="fas fa-paper-plane"></i>Notificar</a>
+                <a href="{{ route("crear.correo", $id) }}" class="btn btn-rounded bg-teal mb-3" data-toggle="tooltip" data-placement="top" title="Notificar"><i class="fas fa-paper-plane"></i>Notificar</a>
             </div>
             </div>
         <div class="card-body">
@@ -119,6 +129,11 @@
 
 @section('js')
     <script>
+    $(document).ready(function() {
+    setTimeout(function() {
+        $(".alert").fadeOut(1500);
+    },3000);
 
+});
     </script>
 @stop

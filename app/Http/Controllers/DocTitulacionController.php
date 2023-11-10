@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EnviarNotificacion;
+use App\Mail\EnviarPassword;
 use App\Models\AceptacionTesis;
 use App\Models\ActoRecepcional;
 use App\Models\AnteProyecto;
@@ -16,7 +18,9 @@ use App\Models\SolEstudiante;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class DocTitulacionController extends Controller
 {
@@ -325,6 +329,49 @@ class DocTitulacionController extends Controller
         return response()->download($ruta);
 
     }
+        //crear email
+    public function email($id){
+        $correo = User::select('email', 'name', 'ap_pater', 'ap_mater')->where('id', '=', $id)->first();
+        $params['correo'] = $correo ;
+        $params['id'] = $id;
+        return view('email.formMensaje', $params);
+    }
+
+        //enviar email
+        public function Sendemail(Request $request){
+            try
+            {
+
+                $id= $request->idAl;
+                $name = User::select('name')->where('email', '=', $request['correo'])->first();
+                $ape = User::select('ap_pater')->where('email', '=', $request['correo'])->first();
+                $nombre = $name->name . " " . $ape->ap_pater;
+                $mensaje = $request['mensaje'];
+                $message = (object)[
+                    "title"             => 'Notificación | Sistema Tec',
+                    "content"           => (object)[
+                        "user"          => $nombre,
+                        "notification"  => 'Aviso: ' . $mensaje,
+
+                    ],
+                    'subject'           => 'Notificación | Sistema Tec'
+                ];
+
+                Mail::to($request['correo'])->send(new EnviarNotificacion($message->title,
+                $message->content,
+                $message->subject,)
+            );
+
+                    return redirect()->route('ver.documentos',$id)->with('success','Notificación enviada correctamente');
+        }
+    catch(ValidationException $exception){
+        $response = [
+            "code" => 422, "msg" => "Error", "error" => $exception->errors()
+        ];
+    }
+
+    return response()->json($response);
 
 
 }
+ }
