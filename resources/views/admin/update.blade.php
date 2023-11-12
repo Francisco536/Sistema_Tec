@@ -12,7 +12,7 @@
                 <div class="card-header">{{ __('Registrar') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('update.admin', $admin->id) }}">
+                    <form method="POST" name="updUser" id="updUser" action="{{ route('update.admin', $admin->id) }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -50,12 +50,7 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $admin->email }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div id="alert4" class="alert alert-danger" style="display:none" role="alert">Ingresa un correo valido</div>
                             </div>
                         </div>
 
@@ -125,6 +120,22 @@
         input3.addEventListener('keypress', e => {
         setTimeout(() => {input3.value = capitalize(input3.value)}, 1)
         })
+
+        var useract = document.getElementById('updUser');
+        useract.addEventListener("submit", (e) => {
+        var exp = /[a-zA-Z0-9._-]+\@(gmail|outlook|hotmail)\.(com|es)$/;
+        var correo = document.getElementById("email").value;
+        var valido = exp.test(correo);
+        if (valido === false){
+            e.preventDefault();
+         let x = document.getElementById("alert4");
+                    x.style.display = "block";
+                    setTimeout(function () {
+                    $("#alert4").fadeOut(1000);
+                    }, 1000);
+        }
+
+    });
     </script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
 @stop

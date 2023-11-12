@@ -67,12 +67,7 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div id="alert4" class="alert alert-danger" style="display:none" role="alert">Ingresa un correo valido</div>
                             </div>
                         </div>
 
@@ -164,6 +159,20 @@ function capitalize(str){
                     }, 1000);
   }
 });
+    adminLog.addEventListener("submit", (e) => {
+        var exp = /[a-zA-Z0-9._-]+\@(gmail|outlook|hotmail)\.(com|es)$/;
+        var correo = document.getElementById("email").value;
+        var valido = exp.test(correo);
+        if (valido === false){
+            e.preventDefault();
+         let x = document.getElementById("alert4");
+                    x.style.display = "block";
+                    setTimeout(function () {
+                    $("#alert4").fadeOut(1000);
+                    }, 1000);
+        }
+
+    });
 
     </script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
