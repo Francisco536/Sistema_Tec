@@ -114,7 +114,7 @@
                     <br><br>
                       <div class="row">
 
-                      <a href="{{url()->previous()}}" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i>
+                      <a  href="{{ route("show.alumno", $id) }}" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i>
                         {{ __('Regresar') }}
                     </a>
             </div>
