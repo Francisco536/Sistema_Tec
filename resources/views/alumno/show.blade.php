@@ -9,7 +9,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Visualizar datos') }}</div>
+                <div class="card-header">
+                        <div class="text-right">
+                            <a  href="{{ route("ver.documentos", $alumno->id) }}"  class="btn btn-rounded bg-teal mb-3" data-toggle="tooltip" data-placement="top" title="Ver Documentos"><i class="fa fa-eye"></i> Ver Documentos</a>
+                        </div>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="}}">
@@ -106,10 +110,10 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <a  href="{{ route("ver.documentos", $alumno->id) }}"  class="btn btn-rounded bg-teal mb-3" data-toggle="tooltip" data-placement="top" title="Ver Documentos"><i class="fa fa-eye"></i> Ver Documentos</a>
-
-
-                               <a href="{{url()->previous()}}" class="btn btn-danger mb-3">
+                                <a  href="{{ route("lista.alumno") }}" class="btn btn-danger mb-3"><i class="fas fa-arrow-circle-left"></i>
+                                    {{ __('Regresar') }}
+                                </a>
+                                <a href="{{url()->previous()}}" class="btn btn-primary mb-3">
                                     {{ __('Cancelar') }}
                                 </a>
 
