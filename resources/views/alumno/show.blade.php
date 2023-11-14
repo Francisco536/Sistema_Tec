@@ -83,10 +83,15 @@
 
                         <div class="row mb-3">
                             <label for="anio" class="col-md-4 col-form-label text-md-end">{{ __('Año de ingreso') }}</label>
-
                             <div class="col-md-6">
                                 <input id="anio" type="text" class="form-control @error('anio') is-invalid @enderror" name="anio" value="{{ $alumno->anio }}" disabled>
+                            </div>
+                        </div>
 
+                        <div class="row mb-3">
+                            <label for="periodo" class="col-md-4 col-form-label text-md-end">{{ __('Periodo') }}</label>
+                            <div class="col-md-6">
+                                <input id="periodo" type="text" class="form-control"  name="periodo" value="{{ $alumno->periodo }}" disabled>
                             </div>
                         </div>
 

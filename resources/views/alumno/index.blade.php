@@ -22,10 +22,21 @@
                     <a href="{{route('add.alumno')}}" type="button" class="btn btn-success btn-block"><i class="fas fa-plus"></i> Nuevo</a>
                 </div>
             </div>
+            <br>
             <div class="d-flex justify-content-start">
                 <form class="d-flex" role="search" action="{{route('lista.alumno')}}" method="GET">
 
                     <input name="no_control" class="form-control me-2" type="search" placeholder="No. Control" aria-label="Search" value="{{$no_control}}" required>
+                    <button class="btn btn-success" type="submit">Buscar</button>
+                    <a class="btn btn-warning" id="limpiar" href="{{route('lista.alumno')}}">Limpiar</a>
+                  </form>
+            </div>
+            <div class="d-flex justify-content-end">
+                <form class="d-flex" role="search" action="{{route('lista.alumno')}}" method="GET">
+
+                    <input name="anio" class="form-control me-2" type="search" placeholder="Año" aria-label="Search" value="" required>
+                    <input name="periodo" class="form-control me-2" type="search" placeholder="Periodo" aria-label="Search" value="" required>
+                    <input name="carrera" class="form-control me-2" type="search" placeholder="Carrera" aria-label="Search" value="" required>
                     <button class="btn btn-success" type="submit">Buscar</button>
                     <a class="btn btn-warning" id="limpiar" href="{{route('lista.alumno')}}">Limpiar</a>
                   </form>
@@ -82,7 +93,7 @@
                 </table>
                 </div>
                 <div class="d-flex justify-content-end">
-                    {!! $collection->links() !!}
+                    {{!! $collection->links() !!}}
                 </div>
         </div>
     </div>

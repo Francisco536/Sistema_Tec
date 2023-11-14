@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('no_control')->nullable();
             $table->string('email')->unique();
             $table->string('anio')->nullable();
+            $table->string('periodo')->nullable();
             $table->string('telefono')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

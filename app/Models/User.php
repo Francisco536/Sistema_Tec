@@ -33,6 +33,7 @@ class User extends Authenticatable
         'carrera',
         'no_control',
         'anio',
+        'periodo',
         'email',
         'password',
         'telefono'

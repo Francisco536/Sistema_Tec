@@ -320,28 +320,34 @@ return [
             'icon'        => 'fas fa-chalkboard-teacher',
             'can'         => 'lista.admin',
         ],
-        [
-            'text' => ' Alumnos',
-            'icon' => 'far fa-address-card',
-            'submenu' => [
-                            [
-                                'text' => 'Alumnos',
-                                'icon' => 'fas fa-user-graduate',
-                                'route'  => 'lista.alumno',
-                            ],
-                            [
-                                'text' => 'Periodo Enero-Julio',
-                                'icon' => 'fas fa-book-reader',
-                                'route'  => 'lista.alumnoP1',
-                            ],
-                            [
-                                'text' => 'Periodo Agosto-Diciembre',
-                                'icon' => 'fas fa-book-reader',
-                                'route'  => 'lista.alumnoP2',
-                            ],
+    //     [
+    //         'text' => ' Alumnos',
+    //         'icon' => 'far fa-address-card',
+    //         'submenu' => [
+    //                         [
+    //                             'text' => 'Alumnos',
+    //                             'icon' => 'fas fa-user-graduate',
+    //                             'route'  => 'lista.alumno',
+    //                         ],
+    //                         [
+    //                             'text' => 'Periodo Enero-Julio',
+    //                             'icon' => 'fas fa-book-reader',
+    //                             'route'  => 'lista.alumnoP1',
+    //                         ],
+    //                         [
+    //                             'text' => 'Periodo Agosto-Diciembre',
+    //                             'icon' => 'fas fa-book-reader',
+    //                             'route'  => 'lista.alumnoP2',
+    //                         ],
+    //     ],
+    //     'can' => 'lista.alumno',
+    // ],
+    [
+            'text' => 'Alumnos',
+            'icon' => 'fas fa-user-graduate',
+            'route'  => 'lista.alumno',
+            'can' => 'lista.alumno',
         ],
-        'can' => 'lista.alumno',
-    ],
          ['header' => 'Carreras',
          'can'         => 'lista.alumno',
 
@@ -364,29 +370,29 @@ return [
             'route'  => 'lista.alumnoSis',
             'can' => 'lista.alumnoSis'
         ],
-        ['header' => 'Formularios'],
-        [
-            'text' => ' Documentos para titulación',
-            'icon' => 'fas fa-archive',
-            'submenu' => [
-                            [
-                                'text' => 'Documentación completa',
-                                'icon' => 'fas fa-clipboard-check',
-                                'route'  => 'lista.documentosCom',
-                            ],
-                            [
-                                'text' => 'Documentación en proceso',
-                                'icon' => 'fas fa-history',
-                                'route'  => 'lista.documentosInc',
-                            ],
-                            [
-                                'text' => 'Sin documentación',
-                                'icon' => 'fas fa-minus-circle',
-                                'route'  => 'lista.documentosVacio',
-                            ],
-        ],
-        'can' => 'lista.documentosVacio',
-    ],
+    //     ['header' => 'Formularios'],
+    //     [
+    //         'text' => ' Documentos para titulación',
+    //         'icon' => 'fas fa-archive',
+    //         'submenu' => [
+    //                         [
+    //                             'text' => 'Documentación completa',
+    //                             'icon' => 'fas fa-clipboard-check',
+    //                             'route'  => 'lista.documentosCom',
+    //                         ],
+    //                         [
+    //                             'text' => 'Documentación en proceso',
+    //                             'icon' => 'fas fa-history',
+    //                             'route'  => 'lista.documentosInc',
+    //                         ],
+    //                         [
+    //                             'text' => 'Sin documentación',
+    //                             'icon' => 'fas fa-minus-circle',
+    //                             'route'  => 'lista.documentosVacio',
+    //                         ],
+    //     ],
+    //     'can' => 'lista.documentosVacio',
+    // ],
         [
             'text' => ' Cargar documentos para titulación',
             'route'  => 'add.documentos',
