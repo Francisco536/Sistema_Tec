@@ -30,6 +30,19 @@
                     <a class="btn btn-warning" id="limpiar" href="{{route('lista.alumnoGes')}}">Limpiar</a>
                   </form>
             </div>
+            <br>
+            <div class="d-flex justify-content-end">
+                <form class="d-flex" role="search" action="{{route('lista.alumnoGes')}}" method="GET">
+
+                    <input name="anio" class="form-control me-2" type="search" placeholder="Año" aria-label="Search" value="{{$anio}}" required>
+                    <select id="periodo" name="periodo" value="{{ $periodo }}"class="form-control select2" style="width: 100%;" required>
+                        <option selected="selected" value="Enero-Julio">Enero-Junio</option>
+                        <option value="Julio-Diciembre">Julio-Diciembre</option>
+                      </select>
+                    <button class="btn btn-success" type="submit">Buscar</button>
+                    <a class="btn btn-warning" id="limpiar" href="{{route('lista.alumnoGes')}}">Limpiar</a>
+                  </form>
+            </div>
 
         </div>
         <div class="card-body">

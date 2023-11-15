@@ -98,7 +98,7 @@
 
                             <div class="col-md-6">
                                 <select id="periodo" name="periodo" value="{{ old('periodo') }}"class="form-control select2" style="width: 100%;" value="{{ $alumno->periodo }}" required>
-                                    <option selected="selected" value="Enero-Julio">Enero-Junio</option>
+                                    <option selected="selected" value="Enero-Junio">Enero-Junio</option>
                                     <option value="Julio-Diciembre">Julio-Diciembre</option>
                                   </select>
 
