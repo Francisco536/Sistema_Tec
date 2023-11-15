@@ -89,8 +89,6 @@
                                     <option selected="selected" value="Ing. en Agronomía">Ing. en Agronomía</option>
                                     <option value="Ing. en Gestión Empresarial" >Ing. en Gestión Empresarial</option>
                                     <option value="Ing. en Sistemas Computacionales">Ing. en Sistemas Computacionales</option>
-
-
                                   </select>
 
                                 @error('carrera')
