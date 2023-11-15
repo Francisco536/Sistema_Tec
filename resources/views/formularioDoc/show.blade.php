@@ -1,7 +1,18 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h4>Documentos del Alumno</h4>
+    <h4>Documentos</h4>
+    <h6><em>Nombre: {{$correo->name . " " . $correo->ap_pater . " ". $correo->ap_mater}}</em></h6>
+    <div>
+        @if ($actoR == true && $noInc == true && $libPro == true && $antePro == true && $regPro == true && $solAlum == true && $ingles == true && $servicio == true && $certif == true && $tesis == true)
+        {{-- <h6><em style="color: red">Documentación Completa</em></h6> --}}
+        <a class="btn btn-rounded btn-success mb-3" ><i class="fas fa-clipboard-check"></i> Documentación Completa</a>
+   @elseif($actoR == false && $noInc == false && $libPro == false && $antePro == false && $regPro == false && $solAlum == false && $ingles == false && $servicio == false && $certif == false && $tesis == false)
+   <h6><em style="color: red">Sin Documentación</em></h6>
+   @else
+   <h6><em style="color: rgb(255, 115, 0)">Documentación Incompleta</em></h6>
+   @endif
+    </div>
 @stop
 
 @section('content')
@@ -17,7 +28,7 @@
         </div>
         @endif
         <div class="card-header">
-            <div class="d-flex justify-content-end">
+           <div class="d-flex justify-content-end">
                 <a href="{{ route("crear.correo", $id) }}" class="btn btn-rounded bg-teal mb-3" data-toggle="tooltip" data-placement="top" title="Notificar"><i class="fas fa-paper-plane"></i>Notificar</a>
             </div>
             </div>

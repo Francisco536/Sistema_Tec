@@ -156,6 +156,9 @@ class DocTitulacionController extends Controller
      */
     public function show($id)
     {
+        $correo = User::select('email', 'name', 'ap_pater', 'ap_mater')->where('id', '=', $id)->first();
+
+
         $actoR    = ActoRecepcional::select('name')->where('id_user', $id)->exists();
         $noInc    = NoInconveniencia::select('*')->where('id_user', $id)->exists();
         $libPro   = LibProyecto::select('*')->where('id_user', $id)->exists();
@@ -169,7 +172,7 @@ class DocTitulacionController extends Controller
 
 
 
-
+        $params['correo'] = $correo ;
         $params['actoR']    = $actoR   ;
         $params['noInc']    = $noInc   ;
         $params['libPro']   = $libPro  ;
