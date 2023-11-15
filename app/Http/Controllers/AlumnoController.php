@@ -66,6 +66,8 @@ class AlumnoController extends Controller
     public function agronomia(Request $request)
     {
         $no_control = $request->no_control;
+        $anio       = $request->anio   ;
+        $periodo    = $request->periodo;
         $collection = User::whereHas('roles', function ($query) {
             $query->where('name', 'Alumno');
         })->where('carrera', 'Ing. en Agronomía')->paginate(10);
@@ -76,10 +78,19 @@ class AlumnoController extends Controller
             })->where('no_control', 'like', '%'.$no_control.'%')->where('carrera', 'Ing. en Agronomía')->paginate(10);
 
         }
+        if($anio && $periodo){
+            $collection = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Alumno');
+            })->where('anio', 'like', '%'.$anio.'%')->where('periodo', 'like', '%'.$periodo.'%')
+            ->where('carrera', 'Ing. en Agronomía')->paginate(10);
 
+
+        }
 
 
         $params['no_control'] = $no_control;
+        $params['anio'] = $anio;
+        $params['periodo'] = $periodo;
         $params['collection'] = $collection;
         return view('alumno.agronomia', $params);
     }
@@ -92,6 +103,8 @@ class AlumnoController extends Controller
     public function gestion(Request $request)
     {
         $no_control = $request->no_control;
+        $anio       = $request->anio   ;
+        $periodo    = $request->periodo;
         $collection = User::whereHas('roles', function ($query) {
             $query->where('name', 'Alumno');
         })->where('carrera', 'Ing. en Gestión Empresarial')->paginate(10);
@@ -103,10 +116,18 @@ class AlumnoController extends Controller
 
 
         }
+        if($anio && $periodo){
+            $collection = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Alumno');
+            })->where('anio', 'like', '%'.$anio.'%')->where('periodo', 'like', '%'.$periodo.'%')
+            ->where('carrera', 'Ing. en Gestión Empresarial')->paginate(10);
 
+        }
 
 
         $params['no_control'] = $no_control;
+        $params['anio'] = $anio;
+        $params['periodo'] = $periodo;
         $params['collection'] = $collection;
         return view('alumno.gestion', $params);
     }
@@ -119,6 +140,8 @@ class AlumnoController extends Controller
     public function sistemas(Request $request)
     {
         $no_control = $request->no_control;
+        $anio       = $request->anio   ;
+        $periodo    = $request->periodo;
         $collection = User::whereHas('roles', function ($query) {
             $query->where('name', 'Alumno');
         })->where('carrera', 'Ing. en Sistemas Computacionales')->paginate(10);
@@ -129,7 +152,17 @@ class AlumnoController extends Controller
             })->where('no_control', 'like', '%'.$no_control.'%')->where('carrera', 'Ing. en Sistemas Computacionales')->paginate(10);
 
         }
+        if($anio && $periodo ){
+            $collection = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Alumno');
+            })->where('anio', 'like', '%'.$anio.'%')->where('periodo', 'like', '%'.$periodo.'%')
+            ->where('carrera', 'Ing. en Sistemas Computacionales')->paginate(10);
+        }
+
+
         $params['no_control'] = $no_control;
+        $params['anio'] = $anio;
+        $params['periodo'] = $periodo;
         $params['collection'] = $collection;
         return view('alumno.sistemas', $params);
     }
