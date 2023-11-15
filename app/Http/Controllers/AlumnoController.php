@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Alumno;
 use Illuminate\Http\Request;
 
+
 use App\Mail\EnviarPassword;
 use App\Models\User;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -23,10 +25,14 @@ class AlumnoController extends Controller
      */
     public function index(Request $request)
     {
-        //
+
 
 
         $no_control = $request->no_control;
+        $anio       = $request->anio   ;
+        $periodo    = $request->periodo;
+        $carrera    = $request->carrera;
+
         $collection = User::whereHas('roles', function ($query) {
             $query->where('name', 'Alumno');
         })->paginate(10);
@@ -36,14 +42,18 @@ class AlumnoController extends Controller
             ->with('roles')->select('*')->paginate(10);
 
         }
-        // if($name){
-        //     $collection = User::where('name', 'like', '%'.$name.'%')
-        //     ->with('roles')->select('*')->paginate(10);
+        if($anio && $periodo && $carrera){
+            $collection = User::where('anio', 'like', '%'.$anio.'%')->where('periodo', 'like', '%'.$periodo.'%')->
+            where('carrera', 'like', '%'.$carrera.'%')
+            ->with('roles')->select('*')->paginate(10);
 
-        // }
+        }
 
 
         $params['no_control'] = $no_control;
+        $params['anio'] = $anio;
+        $params['periodo'] = $periodo;
+        $params['carrera'] = $carrera;
         $params['collection'] = $collection;
         return view('alumno.index', $params);
     }
@@ -157,6 +167,7 @@ class AlumnoController extends Controller
                 'carrera' => $request['carrera'],
                 'no_control' => $request['no_control'],
                 'anio' => $request['anio'],
+                'periodo' => $request['periodo'],
                 'telefono' => $request['telefono'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
@@ -246,6 +257,7 @@ class AlumnoController extends Controller
                 'carrera' => $request['carrera'],
                 'no_control' => $request['no_control'],
                 'anio' => $request['anio'],
+                'periodo' => $request['periodo'],
                 'telefono' => $request['telefono'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),

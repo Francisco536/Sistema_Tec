@@ -44,6 +44,7 @@
                             <th>Carrera</th>
                             <th>No. Control</th>
                             <th>Año</th>
+                            <th>Periodo</th>
                             <th>Telefono</th>
                             <th>Correo</th>
                             <th>Opciones</th>
@@ -61,6 +62,7 @@
                                     <td>{{ $value->carrera}}</td>
                                     <td>{{ $value->no_control}}</td>
                                     <td>{{ $value->anio}}</td>
+                                    <td>{{ $value->periodo}}</td>
                                     <td>{{ $value->telefono}}</td>
                                     <td>{{ $value->email }}</td>
                                     <td>
@@ -81,6 +83,9 @@
                     </tbody>
                 </table>
                 </div>
+                <div class="d-flex justify-content-start">
+                    <h6><em>{{ 'Total de alumnos:'. ' ' . $collection->count() }}</em></h6>
+                   </div>
                 <div class="d-flex justify-content-end">
                     {!! $collection->links() !!}
                 </div>

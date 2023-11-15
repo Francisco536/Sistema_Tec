@@ -125,6 +125,23 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="periodo" class="col-md-4 col-form-label text-md-end">{{ __('Periodo') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="periodo" name="periodo" value="{{ old('periodo') }}"class="form-control select2" style="width: 100%;" required>
+                                    <option selected="selected" value="Enero-Julio">Enero-Junio</option>
+                                    <option value="Julio-Diciembre">Julio-Diciembre</option>
+                                  </select>
+
+                                @error('periodo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="telefono" class="col-md-4 col-form-label text-md-end">{{ __('Numero de telefono') }}</label>
 
                             <div class="col-md-6">
