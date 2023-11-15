@@ -33,7 +33,7 @@ class EnviarPassword extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('lazarojuarez.pa@gmail.com'),
+            from: new Address('arturoangon8@gmail.com'),
             subject: 'Enviar Password',
         );
     }
