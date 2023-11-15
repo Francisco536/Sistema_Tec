@@ -80,6 +80,9 @@
                         @endif
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-start">
+                    <h6><em>{{ 'Total de alumnos:'. ' ' . $collection->count() }}</em></h6>
+                   </div>
                 </div>
                 <div class="d-flex justify-content-end">
                     {!! $collection->links() !!}

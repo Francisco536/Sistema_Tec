@@ -22,7 +22,7 @@
                     <a href="{{route('add.alumno')}}" type="button" class="btn btn-success btn-block"><i class="fas fa-plus"></i> Nuevo</a>
                 </div>
             </div>
-            <br>
+
             <div class="d-flex justify-content-start">
                 <form class="d-flex" role="search" action="{{route('lista.alumno')}}" method="GET">
 
@@ -31,20 +31,28 @@
                     <a class="btn btn-warning" id="limpiar" href="{{route('lista.alumno')}}">Limpiar</a>
                   </form>
             </div>
+            <br>
             <div class="d-flex justify-content-end">
                 <form class="d-flex" role="search" action="{{route('lista.alumno')}}" method="GET">
 
-                    <input name="anio" class="form-control me-2" type="search" placeholder="Año" aria-label="Search" value="" required>
-                    <input name="periodo" class="form-control me-2" type="search" placeholder="Periodo" aria-label="Search" value="" required>
-                    <input name="carrera" class="form-control me-2" type="search" placeholder="Carrera" aria-label="Search" value="" required>
+                    <input name="anio" class="form-control me-2" type="search" placeholder="Año" aria-label="Search" value="{{$anio}}" required>
+                    <select id="periodo" name="periodo" value="{{ $periodo }}"class="form-control select2" style="width: 100%;" required>
+                        <option selected="selected" value="Enero-Julio">Enero-Junio</option>
+                        <option value="Julio-Diciembre">Julio-Diciembre</option>
+                      </select>
+                      <select id="carrera" name="carrera" value="{{ $carrera }}" class="form-control select2" style="width: 100%;" required>
+                        <option selected="selected" value="Ing. en Agronomía">Ing. en Agronomía</option>
+                        <option value="Ing. en Gestión Empresarial" >Ing. en Gestión Empresarial</option>
+                        <option value="Ing. en Sistemas Computacionales">Ing. en Sistemas Computacionales</option>
+                      </select>
                     <button class="btn btn-success" type="submit">Buscar</button>
                     <a class="btn btn-warning" id="limpiar" href="{{route('lista.alumno')}}">Limpiar</a>
                   </form>
             </div>
 
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
+        {{-- <div class="card-body "> --}}
+            <div class="table-responsive-sm">
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -55,6 +63,7 @@
                             <th>Carrera</th>
                             <th>No. Control</th>
                             <th>Año</th>
+                            <th>Periodo</th>
                             <th>Telefono</th>
                             <th>Correo</th>
                             <th>Opciones</th>
@@ -72,6 +81,7 @@
                                     <td>{{ $value->carrera}}</td>
                                     <td>{{ $value->no_control}}</td>
                                     <td>{{ $value->anio}}</td>
+                                    <td>{{ $value->periodo}}</td>
                                     <td>{{ $value->telefono}}</td>
                                     <td>{{ $value->email }}</td>
                                     <td>
@@ -92,10 +102,13 @@
                     </tbody>
                 </table>
                 </div>
-                <div class="d-flex justify-content-end">
-                    {{!! $collection->links() !!}}
+                <div class="d-flex justify-content-start">
+                 <h6><em>{{ 'Total de alumnos:'. ' ' . $collection->count() }}</em></h6>
                 </div>
-        </div>
+                <div class="d-flex justify-content-end">
+                    {!! $collection->links() !!}
+                </div>
+        {{-- </div> --}}
     </div>
 @stop
 
