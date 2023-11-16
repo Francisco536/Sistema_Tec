@@ -130,7 +130,7 @@ a {
 }
 
 .btn-blue {
-    background-color: rgb(51, 105, 105);
+    background-color: #1B396A;
     width: 150px;
     color: #fff;
     border-radius: 2px;
@@ -143,9 +143,9 @@ a {
 
 .bg-blue {
     color: #fff;
-    background-color: rgb(51, 105, 105);
+    background-color: #1B396A;
 }
-
+/* rgb(51, 105, 105)*/
 @media screen and (max-width: 991px) {
     .logo {
         margin-left: 0px;

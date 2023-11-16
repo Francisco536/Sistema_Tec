@@ -58,8 +58,8 @@
                             <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
                         </div>
 
-                        <div class="flex items-center justify-center mt-4">
-                            <x-button class="ml-4" style="background-color: rgb(51, 105, 105)">
+                        <div class="flex items-center justify-center bg-teal mt-4">
+                            <x-button class="ml-4" style="background-color: #1B396A">
                                 {{ __('Iniciar Sesión') }}
                             </x-button>
                         </div>
@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="flex justify-center mt-4" >
-                            <x-button class="ml-4" id="alumno" name="alumno" style="background-color: rgb(51, 105, 105)">
+                            <x-button class="ml-4" id="alumno" name="alumno" style="background-color: #1B396A">
                                 {{ __('Iniciar Sesión') }}
                             </x-button>
                         </div>
