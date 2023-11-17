@@ -344,49 +344,4 @@ class AlumnoController extends Controller
         User::destroy($id);
         return redirect()->route('lista.alumno')->with('message','Usuario eliminado correctamente');
     }
-
-       /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function periodo1(Request $request)
-    {
-        $anio = $request->anio;
-        $collection = User::whereHas('roles', function ($query) {
-            $query->where('name', 'Alumno');
-        })->whereMonth('created_at', '>=', '01')->whereMonth('created_at', '<=', '06')->paginate(10);
-
-        if($anio){
-            $collection = User::whereHas('roles', function ($query) {
-                $query->where('name', 'Alumno');
-            })->where('anio', 'like', '%'.$anio.'%')->whereMonth('created_at', '>=', '01')->whereMonth('created_at', '<=', '06')->paginate(10);
-
-        }
-        $params['anio'] = $anio;
-        $params['collection'] = $collection;
-        return view('alumno.periodo1', $params);
-    }
-         /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function periodo2(Request $request)
-    {
-        $anio = $request->anio;
-        $collection = User::whereHas('roles', function ($query) {
-            $query->where('name', 'Alumno');
-        })->whereMonth('created_at', '>=', '07')->whereMonth('created_at', '<=', '12')->paginate(10);
-
-        if($anio){
-            $collection = User::whereHas('roles', function ($query) {
-                $query->where('name', 'Alumno');
-            })->where('anio', 'like', '%'.$anio.'%')->whereMonth('created_at', '>=', '07')->whereMonth('created_at', '<=', '12')->paginate(10);
-
-        }
-        $params['anio'] = $anio;
-        $params['collection'] = $collection;
-        return view('alumno.periodo2', $params);
-    }
 }

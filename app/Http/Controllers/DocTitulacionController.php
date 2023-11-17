@@ -332,7 +332,7 @@ class DocTitulacionController extends Controller
         return response()->download($ruta);
 
     }
-        //crear email
+        //crear email de notificacion
     public function email($id){
         $correo = User::select('email', 'name', 'ap_pater', 'ap_mater')->where('id', '=', $id)->first();
         $params['correo'] = $correo ;
