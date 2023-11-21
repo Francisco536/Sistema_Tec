@@ -37,7 +37,7 @@
 
                     <input name="anio" class="form-control me-2" type="search" placeholder="Año" aria-label="Search" value="{{$anio}}" required>
                     <select id="periodo" name="periodo" value="{{ $periodo }}"class="form-control select2" style="width: 100%;" required>
-                        <option selected="selected" value="Enero-Julio">Enero-Junio</option>
+                        <option selected="selected" value="Enero-Junio">Enero-Junio</option>
                         <option value="Julio-Diciembre">Julio-Diciembre</option>
                       </select>
                       <select id="carrera" name="carrera" value="{{ $carrera }}" class="form-control select2" style="width: 100%;" required>
