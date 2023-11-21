@@ -221,8 +221,8 @@ class DocTitulacionController extends Controller
 
         $buscar= ActoRecepcional::Select('name')->where('id_user', $id)->first();
         $ruta = $buscar->name = public_path().$buscar->name ;
-        //dd($ruta);
-        //dd(Storage::exists(public_path().$buscar->name));
+
+        //dd(file_exists($ruta));
         $headers = [
             "Content-Type" => "application/octet-stream",
         ];
