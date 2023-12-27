@@ -399,6 +399,12 @@ return [
             'icon' => 'far fa-file-pdf',
             'can'  => 'add.documentos',
         ],
+        [
+            'text' => ' Generar Constancia',
+            'route'  => 'add.documentos',
+            'icon' => 'fas fa-file-export',
+            // 'can'  => 'add.documentos',
+        ],
 
     ],
 
